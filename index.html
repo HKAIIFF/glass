@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIFGLASS - The AI-Native Digital Reality Foundation Device</title>
+    <title>AIFGLASS - AI原生數位現實基礎設備</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
@@ -16,21 +16,27 @@
             --gray-dark: #1a202c;
         }
         
+        * {
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', 'Microsoft JhengHei', sans-serif;
             background-color: var(--dark);
             color: #ffffff;
             overflow-x: hidden;
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(102, 126, 234, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 90% 80%, rgba(118, 75, 162, 0.1) 0%, transparent 20%);
+            margin: 0;
+            padding: 0;
         }
         
         .logo-font {
             font-family: 'Orbitron', sans-serif;
             font-weight: 800;
-            font-size: 2.5rem;
-            letter-spacing: 3px;
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            letter-spacing: 2px;
             background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -39,6 +45,7 @@
             display: inline-block;
             text-shadow: 0 0 15px rgba(0, 255, 157, 0.3);
             animation: logoGlow 3s ease-in-out infinite alternate;
+            text-align: center;
         }
         
         @keyframes logoGlow {
@@ -49,11 +56,11 @@
         .logo-sub {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 0.7rem;
-            letter-spacing: 4px;
+            font-size: clamp(0.5rem, 2vw, 0.7rem);
+            letter-spacing: clamp(1px, 1vw, 4px);
             text-transform: uppercase;
             color: var(--accent);
-            margin-top: -10px;
+            margin-top: -5px;
             text-align: center;
             opacity: 0.8;
         }
@@ -93,6 +100,16 @@
             background-color: rgba(10, 10, 10, 0.95);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(0, 255, 157, 0.1);
+            padding: 12px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(10, 10, 10, 0.98);
         }
         
         .btn-primary {
@@ -103,6 +120,8 @@
             color: white;
             text-decoration: none;
             display: inline-block;
+            border-radius: 50px;
+            padding: 12px 24px;
         }
         
         .btn-primary:hover {
@@ -113,17 +132,113 @@
         
         .btn-secondary {
             background-color: transparent;
-            border: 1px solid var(--accent);
+            border: 2px solid var(--accent);
             color: var(--accent);
             transition: all 0.3s ease;
             font-weight: 600;
             text-decoration: none;
             display: inline-block;
+            border-radius: 50px;
+            padding: 10px 24px;
         }
         
         .btn-secondary:hover {
             background-color: rgba(0, 255, 157, 0.1);
             transform: translateY(-3px);
+            color: var(--accent);
+        }
+        
+        /* Mobile-first Navigation */
+        .mobile-nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            width: 100%;
+        }
+        
+        .desktop-nav {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .desktop-nav {
+                display: flex;
+            }
+            .mobile-nav-btn {
+                display: none;
+            }
+        }
+        
+        .mobile-nav-btn {
+            background: none;
+            border: none;
+            color: var(--accent);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav-btn:hover {
+            background: rgba(0, 255, 157, 0.1);
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            padding: 20px;
+            transition: right 0.3s ease;
+            border-left: 1px solid rgba(0, 255, 157, 0.2);
+            overflow-y: auto;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--accent);
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-close:hover {
+            background: rgba(0, 255, 157, 0.1);
+        }
+        
+        .mobile-menu-links {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .mobile-menu-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-links a:hover {
+            background: rgba(0, 255, 157, 0.1);
             color: var(--accent);
         }
         
@@ -134,6 +249,7 @@
             display: flex;
             align-items: center;
             padding-top: 80px;
+            padding-bottom: 40px;
         }
         
         .hero:before {
@@ -150,6 +266,8 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            width: 100%;
+            padding: 0 16px;
         }
         
         .hero-bg {
@@ -211,69 +329,9 @@
             to { transform: translateX(0); opacity: 1; }
         }
         
-        .progress-bar {
-            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
-            border-radius: 9999px;
-            height: 8px;
-        }
-        
-        .cyber-border {
-            position: relative;
-        }
-        
-        .cyber-border:after {
-            content: '';
-            position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, transparent 30%, var(--accent) 45%, var(--secondary) 55%, transparent 70%);
-            background-size: 200% 200%;
-            animation: borderGlow 5s linear infinite;
-            z-index: -1;
-            border-radius: 20px;
-        }
-        
-        @keyframes borderGlow {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        
-        .ai-element {
-            position: absolute;
-            background-color: rgba(102, 126, 234, 0.1);
-            border: 1px solid rgba(102, 126, 234, 0.3);
-            backdrop-filter: blur(5px);
-            padding: 10px;
-            border-radius: 8px;
-            font-family: monospace;
-            font-size: 12px;
-            color: var(--accent);
-            z-index: 3;
-            pointer-events: none;
-            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
-        }
-        
-        .data-stream {
-            position: absolute;
-            height: 100px;
-            width: 2px;
-            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
-            z-index: 0;
-            animation: dataStream 2s linear infinite;
-            opacity: 0.3;
-        }
-        
-        @keyframes dataStream {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100vh); }
-        }
-        
         .stats-card {
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             border-radius: 16px;
             background: rgba(26, 32, 44, 0.5);
             border: 1px solid rgba(0, 255, 157, 0.1);
@@ -287,15 +345,15 @@
         }
         
         .stats-card i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            margin-bottom: 12px;
             color: var(--accent);
         }
         
         .stats-card .number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
@@ -304,14 +362,14 @@
         
         .tech-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
         
         .tech-item {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -325,7 +383,7 @@
         }
         
         .tech-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
@@ -343,18 +401,20 @@
         .tech-desc {
             font-size: 0.9rem;
             opacity: 0.7;
+            line-height: 1.5;
         }
         
         .section-title {
             position: relative;
             display: inline-block;
             margin-bottom: 2rem;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            line-height: 1.2;
         }
         
         .section-title:after {
@@ -374,63 +434,17 @@
         }
         
         .section-subtitle {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
             color: #ccc;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             max-width: 600px;
+            line-height: 1.6;
         }
         
         .section-subtitle.center {
             margin-left: auto;
             margin-right: auto;
             text-align: center;
-        }
-        
-        .input-field {
-            background: rgba(26, 32, 44, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: white;
-            border-radius: 8px;
-            padding: 12px 16px;
-            transition: all 0.3s ease;
-        }
-        
-        .input-field:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(0, 255, 157, 0.2);
-        }
-        
-        .input-field::placeholder {
-            color: #888;
-        }
-        
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 20px;
-            transform: translateX(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--accent);
         }
         
         .experience-card {
@@ -449,34 +463,186 @@
         }
         
         .experience-image {
-            height: 200px;
+            height: 150px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
         
         .experience-content {
-            padding: 2rem;
+            padding: 1.5rem;
         }
         
         .experience-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
             color: #fff;
         }
         
         .experience-content p {
             color: #ccc;
             line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        
+        /* Grid Responsive Adjustments */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .grid-cols-1 {
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 640px) {
+            .sm\\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .md\\:grid-cols-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .md\\:grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .md\\:grid-cols-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\\:grid-cols-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .lg\\:grid-cols-4 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Typography Responsive */
+        .text-responsive-lg {
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+        
+        .text-responsive-xl {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+        }
+        
+        .text-responsive-2xl {
+            font-size: clamp(3rem, 7vw, 5rem);
+        }
+        
+        /* Spacing Utilities */
+        .py-section {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .py-section {
+                padding-top: 5rem;
+                padding-bottom: 5rem;
+            }
+        }
+        
+        /* Button responsive sizing */
+        .btn-responsive {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+        
+        @media (min-width: 768px) {
+            .btn-responsive {
+                padding: 16px 32px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Mobile overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hide scrollbar when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        /* AI elements styles */
+        .ai-element {
+            position: absolute;
+            background-color: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 10px;
+            color: var(--accent);
+            z-index: 3;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(0, 255, 157, 0.1);
+        }
+        
+        @media (min-width: 768px) {
+            .ai-element {
+                padding: 10px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+        }
+        
+        .data-stream {
+            position: absolute;
+            height: 80px;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--accent), var(--secondary), transparent);
+            z-index: 0;
+            animation: dataStream 2s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @media (min-width: 768px) {
+            .data-stream {
+                height: 100px;
+            }
+        }
+        
+        @keyframes dataStream {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
         }
         
         /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
         
         ::-webkit-scrollbar-track {
@@ -485,118 +651,97 @@
         
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 4px;
+            border-radius: 3px;
         }
         
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .desktop-nav {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .logo-font {
-                font-size: 1.8rem;
-            }
-            
-            .hero {
-                min-height: 80vh;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .section-title:after {
-                width: 40px;
-                bottom: -8px;
-            }
-            
-            .hero-bg {
-                animation: none;
-            }
+        /* Focus styles for accessibility */
+        .btn-primary:focus,
+        .btn-secondary:focus,
+        .mobile-nav-btn:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
         
-        @media (max-width: 480px) {
-            .hero {
-                min-height: 70vh;
-            }
-            
-            .logo-font {
-                font-size: 1.5rem;
-            }
-            
-            .logo-sub {
-                font-size: 0.6rem;
+        /* Fix for touch devices */
+        @media (hover: none) and (pointer: coarse) {
+            .card:hover,
+            .stats-card:hover,
+            .experience-card:hover,
+            .tech-item:hover {
+                transform: none;
             }
         }
     </style>
 </head>
 <body>
     <!-- AI Elements -->
-    <div class="ai-element" style="top: 120px; left: 10%;">
-        AIFNPU: ACTIVE <br>
-        AI_PROC: 50 TOPS <br>
-        // Real-time Processing
+    <div class="ai-element" style="top: 120px; left: 5%;">
+        AIFNPU: 啟動中 <br>
+        AI_處理: 50 TOPS <br>
+        // 即時處理
     </div>
     
-    <div class="ai-element" style="bottom: 150px; right: 15%;">
-        404.WORLD: SYNC <br>
-        PARALLEL: ∞ <br>
-        // Infinite Realities
+    <div class="ai-element" style="bottom: 150px; right: 5%;">
+        404.WORLD: 同步 <br>
+        平行: ∞ <br>
+        // 無限現實
     </div>
     
     <!-- Data streams -->
-    <div class="data-stream" style="left: 20%; animation-delay: 0s;"></div>
-    <div class="data-stream" style="left: 40%; animation-delay: 0.5s;"></div>
-    <div class="data-stream" style="left: 60%; animation-delay: 1s;"></div>
-    <div class="data-stream" style="left: 80%; animation-delay: 1.5s;"></div>
+    <div class="data-stream" style="left: 15%; animation-delay: 0s;"></div>
+    <div class="data-stream" style="left: 35%; animation-delay: 0.5s;"></div>
+    <div class="data-stream" style="left: 65%; animation-delay: 1s;"></div>
+    <div class="data-stream" style="left: 85%; animation-delay: 1.5s;"></div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <!-- Navigation -->
-    <nav class="navbar fixed w-full z-50 px-4 py-3">
-        <div class="container mx-auto flex justify-between items-center">
+    <nav class="navbar" id="navbar">
+        <div class="mobile-nav-container">
             <div class="flex flex-col items-center">
                 <div class="logo-font">AIFGLASS</div>
-                <div class="logo-sub">AI-NATIVE REALITY</div>
+                <div class="logo-sub">AI原生現實</div>
             </div>
-            <div class="hidden md:flex space-x-8 desktop-nav">
-                <a href="#products" class="hover:text-blue-400 transition">Products</a>
-                <a href="#technology" class="hover:text-blue-400 transition">Technology</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav space-x-8">
+                <a href="#products" class="hover:text-blue-400 transition">產品</a>
+                <a href="#technology" class="hover:text-blue-400 transition">技術</a>
                 <a href="#404world" class="hover:text-blue-400 transition">404.world</a>
-                <a href="#experiences" class="hover:text-blue-400 transition">Experiences</a>
-                <a href="#privacy" class="hover:text-blue-400 transition">Privacy</a>
-                <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
+                <a href="#experiences" class="hover:text-blue-400 transition">體驗</a>
+                <a href="#privacy" class="hover:text-blue-400 transition">隱私</a>
+                <a href="#contact" class="hover:text-blue-400 transition">聯絡</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="#preorder" class="btn-primary px-6 py-2 rounded-full text-sm">Pre-order</a>
-                <button class="md:hidden text-white mobile-menu-btn">
-                    <i class="fas fa-bars text-xl"></i>
+            
+            <!-- Mobile Controls -->
+            <div class="flex items-center space-x-3">
+                <a href="#preorder" class="btn-primary btn-responsive">預購</a>
+                <button class="mobile-nav-btn" id="mobileNavBtn" aria-label="開啟選單">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
-        <div class="mobile-menu-close">
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-close" id="mobileMenuClose" aria-label="關閉選單">
             <i class="fas fa-times"></i>
         </div>
         
-        <div class="mt-12 flex flex-col space-y-6">
-            <a href="#products" class="text-xl hover:text-blue-400 transition">Products</a>
-            <a href="#technology" class="text-xl hover:text-blue-400 transition">Technology</a>
-            <a href="#404world" class="text-xl hover:text-blue-400 transition">404.world</a>
-            <a href="#experiences" class="text-xl hover:text-blue-400 transition">Experiences</a>
-            <a href="#privacy" class="text-xl hover:text-blue-400 transition">Privacy</a>
-            <a href="#contact" class="text-xl hover:text-blue-400 transition">Contact</a>
+        <div class="mobile-menu-links">
+            <a href="#products">產品</a>
+            <a href="#technology">技術</a>
+            <a href="#404world">404.world</a>
+            <a href="#experiences">體驗</a>
+            <a href="#privacy">隱私</a>
+            <a href="#contact">聯絡</a>
             
-            <div class="pt-6 border-t border-gray-700">
-                <button class="btn-primary w-full py-3 rounded-lg font-medium text-center">
-                    Pre-order Now
-                </button>
+            <div style="padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px;">
+                <a href="#preorder" class="btn-primary" style="display: block; text-align: center; width: 100%;">
+                    立即預購
+                </a>
             </div>
         </div>
     </div>
@@ -604,23 +749,23 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="container mx-auto px-4 hero-content">
-            <div class="max-w-4xl animate-fade-in">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <div class="container hero-content">
+            <div class="animate-fade-in">
+                <h1 class="text-responsive-2xl font-bold mb-6">
                     <span class="gradient-text">AIFGLASS</span>
                 </h1>
-                <p class="text-2xl md:text-3xl text-gray-300 mb-6">
-                    The AI-Native Digital Reality Foundation Device
+                <p class="text-responsive-xl text-gray-300 mb-6">
+                    AI原生數位現實基礎設備
                 </p>
-                <p class="text-xl text-gray-400 mb-8 max-w-3xl">
-                    Experience infinite parallel worlds, personalized just for you. Step into the future where every story becomes your story, every reality becomes personal, and the impossible becomes everyday.
+                <p class="text-lg text-gray-400 mb-8 max-w-3xl leading-relaxed">
+                    體驗無限平行世界，專為您個人化定製。踏入未來，在這裡每個故事都成為您的故事，每個現實都變得個人化，不可能的事情成為日常。
                 </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                    <a href="#products" class="btn-primary px-8 py-4 rounded-full font-medium text-center text-lg">
-                        Explore Products
+                <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                    <a href="#products" class="btn-primary btn-responsive text-center">
+                        探索產品
                     </a>
-                    <a href="#404world" class="btn-secondary px-8 py-4 rounded-full font-medium text-center text-lg">
-                        Discover 404.world
+                    <a href="#404world" class="btn-secondary btn-responsive text-center">
+                        發現 404.world
                     </a>
                 </div>
                 
@@ -629,22 +774,22 @@
                     <div class="stats-card">
                         <i class="fas fa-microchip"></i>
                         <div class="number">50+</div>
-                        <div class="text-sm">TOPS AI Power</div>
+                        <div class="text-sm">TOPS AI 能力</div>
                     </div>
                     <div class="stats-card">
                         <i class="fas fa-eye"></i>
                         <div class="number">4K</div>
-                        <div class="text-sm">Per Eye</div>
+                        <div class="text-sm">單眼解析度</div>
                     </div>
                     <div class="stats-card">
                         <i class="fas fa-battery-full"></i>
-                        <div class="number">24hr</div>
-                        <div class="text-sm">Battery Life</div>
+                        <div class="number">24小時</div>
+                        <div class="text-sm">電池續航</div>
                     </div>
                     <div class="stats-card">
                         <i class="fas fa-infinity"></i>
                         <div class="number">∞</div>
-                        <div class="text-sm">Parallel Worlds</div>
+                        <div class="text-sm">平行世界</div>
                     </div>
                 </div>
             </div>
@@ -652,71 +797,71 @@
     </section>
 
     <!-- Revolutionary Features -->
-    <section id="features" class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in">Revolutionary Features</h2>
+    <section id="features" class="py-section">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in">革命性功能</h2>
             <p class="section-subtitle center animate-fade-in">
-                AIFGLASS redefines human-computer interaction with breakthrough technologies designed for the AI era
+                AIFGLASS 以為 AI 時代設計的突破性技術重新定義人機互動
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="card p-8 animate-slide-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-brain text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">AI-Native Architecture</h3>
+                    <h3 class="text-xl font-bold mb-4">AI原生架構</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Built from the ground up for AI-powered experiences with our custom AIFNPU processing 50 TOPS of AI performance locally, ensuring privacy and responsiveness.
+                        從零開始為AI驅動體驗而建，搭載我們定制的AIFNPU，提供50 TOPS的AI性能，確保隱私和響應速度。
                     </p>
                 </div>
                 
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-feather-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Invisible Computing</h3>
+                    <h3 class="text-xl font-bold mb-4">隱形運算</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Elegant 45-65g form factor indistinguishable from premium eyewear, with 18-24 hour battery life and seamless integration into daily life.
+                        優雅的45-65g設計，與高級眼鏡無異，擁有18-24小時續航，無縫融入日常生活。
                     </p>
                 </div>
                 
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-magic text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Infinite Personalization</h3>
+                    <h3 class="text-xl font-bold mb-4">無限個人化</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Every experience uniquely tailored to your preferences, memories, and emotions through advanced AI that learns and adapts to your individual story.
+                        每個體驗都根據您的偏好、記憶和情感量身定制，透過進階AI學習並適應您的個人故事。
                     </p>
                 </div>
                 
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-shield-alt text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Privacy First</h3>
+                    <h3 class="text-xl font-bold mb-4">隱私優先</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Your personal data processed locally on-device. Complete control over your digital identity with hardware-level security and encryption.
+                        您的個人資料在設備上本地處理。完全控制您的數位身份，配備硬體級安全和加密。
                     </p>
                 </div>
                 
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-teal-500 to-green-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-globe text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Parallel Worlds</h3>
+                    <h3 class="text-xl font-bold mb-4">平行世界</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Exclusive access to 404.world's infinite universe of personalized content where every viewing creates a unique, unrepeatable experience.
+                        獨家存取404.world的無限個人化內容宇宙，每次觀看都創造獨特且不可重複的體驗。
                     </p>
                 </div>
                 
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="w-16 h-16 bg-gradient-to-r from-yellow-500 to-red-600 rounded-xl flex items-center justify-center mb-6">
                         <i class="fas fa-users text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Social Reality</h3>
+                    <h3 class="text-xl font-bold mb-4">社交現實</h3>
                     <p class="text-gray-400 leading-relaxed">
-                        Share experiences with others while maintaining personal customization. Connect across distances through synchronized parallel worlds.
+                        與他人分享體驗，同時保持個人定制。透過同步平行世界跨距離連接。
                     </p>
                 </div>
             </div>
@@ -724,239 +869,237 @@
     </section>
 
     <!-- Product Showcase -->
-    <section id="products" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in">AIFGLASS Product Line</h2>
+    <section id="products" class="py-section" style="background-color: rgba(26, 32, 44, 0.3);">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in">AIFGLASS 產品線</h2>
             <p class="section-subtitle center animate-fade-in">
-                Choose your gateway to infinite realities
+                選擇您通往無限現實的入口
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- AIFGLASS Core -->
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="text-center mb-6">
                         <h3 class="text-2xl font-bold gradient-text mb-2">AIFGLASS Core</h3>
                         <div class="text-4xl font-bold text-white mb-4">$899</div>
-                        <p class="text-gray-400">Essential AI Reality Experience</p>
+                        <p class="text-gray-400">基礎AI現實體驗</p>
                     </div>
                     
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>4K per eye micro-OLED display</span>
+                            <span>單眼4K微型OLED顯示器</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>18-hour battery life</span>
+                            <span>18小時電池續航</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>50 TOPS AI processing</span>
+                            <span>50 TOPS AI處理能力</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>404.world basic experiences</span>
+                            <span>404.world基礎體驗</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Eye & hand tracking</span>
+                            <span>眼部與手部追蹤</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Spatial audio</span>
+                            <span>空間音響</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Wi-Fi 7 & 5G connectivity</span>
+                            <span>Wi-Fi 7 & 5G連接</span>
                         </li>
                     </ul>
-                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium">Pre-order</a>
+                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium block">預購</a>
                 </div>
                 
                 <!-- AIFGLASS Pro -->
-                <div class="card p-8 animate-slide-up cyber-border">
+                <div class="card p-6 animate-slide-up" style="border: 2px solid var(--accent);">
                     <div class="text-center mb-6">
                         <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-4 inline-block">
-                            Most Popular
+                            最受歡迎
                         </div>
                         <h3 class="text-2xl font-bold gradient-text mb-2">AIFGLASS Pro</h3>
                         <div class="text-4xl font-bold text-white mb-4">$1,299</div>
-                        <p class="text-gray-400">Professional AI Reality Platform</p>
+                        <p class="text-gray-400">專業AI現實平台</p>
                     </div>
                     
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Enhanced 4K displays (120Hz)</span>
+                            <span>增強4K顯示器 (120Hz)</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>24-hour battery life</span>
+                            <span>24小時電池續航</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>100 TOPS AI processing</span>
+                            <span>100 TOPS AI處理能力</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>404.world premium features</span>
+                            <span>404.world進階功能</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Biometric monitoring</span>
+                            <span>生物識別監測</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Advanced sensors</span>
+                            <span>進階感測器</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Professional tools</span>
+                            <span>專業工具</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Premium materials</span>
+                            <span>高級材質</span>
                         </li>
                     </ul>
-                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium">Pre-order</a>
+                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium block">預購</a>
                 </div>
                 
                 <!-- AIFGLASS Max -->
-                <div class="card p-8 animate-slide-up">
+                <div class="card p-6 animate-slide-up">
                     <div class="text-center mb-6">
                         <h3 class="text-2xl font-bold gradient-text mb-2">AIFGLASS Max</h3>
                         <div class="text-4xl font-bold text-white mb-4">$1,799</div>
-                        <p class="text-gray-400">Ultimate AI Reality Experience</p>
+                        <p class="text-gray-400">終極AI現實體驗</p>
                     </div>
                     
                     <ul class="space-y-3 mb-8">
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Maximum 4K+ resolution</span>
+                            <span>最高4K+解析度</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>48-hour extended battery</span>
+                            <span>48小時延長續航</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>200 TOPS AI powerhouse</span>
+                            <span>200 TOPS AI動力核心</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>404.world exclusive content</span>
+                            <span>404.world獨家內容</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Advanced biometrics</span>
+                            <span>進階生物識別</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Titanium construction</span>
+                            <span>鈦合金構造</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Creator revenue sharing</span>
+                            <span>創作者收益分成</span>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-check text-green-400 mr-3"></i>
-                            <span>Early access features</span>
+                            <span>搶先體驗功能</span>
                         </li>
                     </ul>
-                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium">Pre-order</a>
+                    <a href="#preorder" class="btn-primary w-full py-3 rounded-lg text-center font-medium block">預購</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Technology Breakthrough -->
-    <section id="technology" class="py-20 bg-black">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in text-white">Breakthrough Technology</h2>
+    <section id="technology" class="py-section" style="background-color: #000;">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in text-white">突破性技術</h2>
             <p class="section-subtitle center animate-fade-in">
-                Revolutionary innovations that make the impossible possible
+                讓不可能成為可能的革命性創新
             </p>
             
             <div class="tech-grid">
                 <div class="tech-item animate-fade-in">
                     <div class="tech-number">50+</div>
-                    <div class="tech-label">TOPS AI Processing</div>
-                    <div class="tech-desc">Custom AIFNPU delivers real-time personalized content generation</div>
+                    <div class="tech-label">TOPS AI處理</div>
+                    <div class="tech-desc">定制AIFNPU提供即時個人化內容生成</div>
                 </div>
                 
                 <div class="tech-item animate-fade-in">
                     <div class="tech-number">4K</div>
-                    <div class="tech-label">Per Eye Resolution</div>
-                    <div class="tech-desc">Quantum dot micro-OLED displays with cinema-quality visuals</div>
+                    <div class="tech-label">單眼解析度</div>
+                    <div class="tech-desc">量子點微型OLED顯示器，電影級視覺品質</div>
                 </div>
                 
                 <div class="tech-item animate-fade-in">
                     <div class="tech-number">45g</div>
-                    <div class="tech-label">Ultra-Light Design</div>
-                    <div class="tech-desc">Lighter than traditional glasses, comfortable all-day wear</div>
+                    <div class="tech-label">超輕設計</div>
+                    <div class="tech-desc">比傳統眼鏡更輕，全天舒適佩戴</div>
                 </div>
                 
                 <div class="tech-item animate-fade-in">
-                    <div class="tech-number">24hr</div>
-                    <div class="tech-label">Battery Life</div>
-                    <div class="tech-desc">All-day usage with intelligent power management</div>
+                    <div class="tech-number">24小時</div>
+                    <div class="tech-label">電池續航</div>
+                    <div class="tech-desc">智慧電源管理的全天使用</div>
                 </div>
                 
                 <div class="tech-item animate-fade-in">
                     <div class="tech-number">1ms</div>
-                    <div class="tech-label">Ultra-Low Latency</div>
-                    <div class="tech-desc">Sub-millisecond response for natural interactions</div>
+                    <div class="tech-label">超低延遲</div>
+                    <div class="tech-desc">毫秒級回應，自然互動體驗</div>
                 </div>
                 
                 <div class="tech-item animate-fade-in">
                     <div class="tech-number">∞</div>
-                    <div class="tech-label">Parallel Worlds</div>
-                    <div class="tech-desc">Unlimited personalized content variations</div>
+                    <div class="tech-label">平行世界</div>
+                    <div class="tech-desc">無限個人化內容變化</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 404.world Integration -->
-    <section id="404world" class="py-20 bg-gradient-to-br from-blue-900 to-purple-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="section-title center animate-fade-in text-white">Powered by 404.world</h2>
+    <section id="404world" class="py-section" style="background: linear-gradient(135deg, #1e3a8a, #7c3aed);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title center animate-fade-in text-white">由 404.world 驅動</h2>
                 <p class="section-subtitle center animate-fade-in">
-                    The world's first infinite content universe where every story becomes your story
+                    世界首個無限內容宇宙，每個故事都成為你的故事
                 </p>
                 
                 <div class="mb-12 animate-fade-in">
-                    <p class="text-xl text-gray-200 leading-relaxed">
-                        AIFGLASS is the exclusive hardware platform for 404.world's revolutionary parallel worlds system. 
-                        Experience personalized versions of films, shows, and interactive content that adapt to your preferences, 
-                        memories, and emotions in real-time.
+                    <p class="text-xl text-gray-200 leading-relaxed max-w-4xl mx-auto">
+                        AIFGLASS 是 404.world 革命性平行世界系統的獨家硬體平台。體驗根據您的偏好、記憶和情感即時適應的個人化電影、節目和互動內容版本。
                     </p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-user-circle text-3xl text-blue-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Personal Parallel Worlds</h3>
-                        <p class="text-gray-400 text-sm">Create unique versions of content based on your personal data and preferences</p>
+                        <h3 class="text-lg font-bold mb-3">個人平行世界</h3>
+                        <p class="text-gray-400 text-sm">基於您的個人資料和偏好創建獨特的內容版本</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-share-alt text-3xl text-green-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Shared Experiences</h3>
-                        <p class="text-gray-400 text-sm">Explore and participate in parallel worlds created by others worldwide</p>
+                        <h3 class="text-lg font-bold mb-3">共享體驗</h3>
+                        <p class="text-gray-400 text-sm">探索並參與全球他人創建的平行世界</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-coins text-3xl text-yellow-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Creator Economy</h3>
-                        <p class="text-gray-400 text-sm">Participate in AIF token economics and earn from your creative contributions</p>
+                        <h3 class="text-lg font-bold mb-3">創作者經濟</h3>
+                        <p class="text-gray-400 text-sm">參與AIF代幣經濟，從您的創意貢獻中獲益</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-infinity text-3xl text-purple-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Infinite Content</h3>
-                        <p class="text-gray-400 text-sm">Access an ever-expanding universe of AI-native experiences and stories</p>
+                        <h3 class="text-lg font-bold mb-3">無限內容</h3>
+                        <p class="text-gray-400 text-sm">存取不斷擴展的AI原生體驗和故事宇宙</p>
                     </div>
                 </div>
             </div>
@@ -964,21 +1107,21 @@
     </section>
 
     <!-- Transformative Experiences -->
-    <section id="experiences" class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in">Transformative Experiences</h2>
+    <section id="experiences" class="py-section">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in">變革性體驗</h2>
             <p class="section-subtitle center animate-fade-in">
-                AIFGLASS opens new dimensions of entertainment, work, and human connection
+                AIFGLASS 開啟娛樂、工作和人際連接的新維度
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="experience-card animate-slide-up">
                     <div class="experience-image">
                         <i class="fas fa-theater-masks"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Entertainment Revolution</h3>
-                        <p>Watch movies where you're the character, attend concerts from the stage, experience stories that adapt to your emotions and choices in real-time.</p>
+                        <h3>娛樂革命</h3>
+                        <p>觀看您是主角的電影，從舞台參與音樂會，體驗根據您的情感和選擇即時適應的故事。</p>
                     </div>
                 </div>
                 
@@ -987,8 +1130,8 @@
                         <i class="fas fa-building"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Workplace Transformation</h3>
-                        <p>Collaborate in virtual spaces indistinguishable from physical presence. Access information contextually and enhance productivity through AI assistance.</p>
+                        <h3>工作場所轉型</h3>
+                        <p>在與實體存在無異的虛擬空間中協作。透過AI協助情境化存取資訊並提升生產力。</p>
                     </div>
                 </div>
                 
@@ -997,8 +1140,8 @@
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Learning Reimagined</h3>
-                        <p>Experience history firsthand, visualize complex concepts in 3D, and receive personalized AI tutoring adapted to your learning style and pace.</p>
+                        <h3>學習重新想像</h3>
+                        <p>親身體驗歷史，以3D視覺化複雜概念，接受適應您學習風格和步調的個人化AI輔導。</p>
                     </div>
                 </div>
                 
@@ -1007,8 +1150,8 @@
                         <i class="fas fa-globe-americas"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Social Connection</h3>
-                        <p>Share experiences across distances, create memories together in virtual spaces, and express yourself through personalized digital environments.</p>
+                        <h3>社交連接</h3>
+                        <p>跨距離分享體驗，在虛擬空間中共同創造記憶，透過個人化數位環境表達自我。</p>
                     </div>
                 </div>
                 
@@ -1017,8 +1160,8 @@
                         <i class="fas fa-heartbeat"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Health & Wellness</h3>
-                        <p>Monitor your wellbeing, access therapeutic experiences, receive personalized health insights, and practice mindfulness in immersive environments.</p>
+                        <h3>健康與福祉</h3>
+                        <p>監測您的健康狀況，存取治療體驗，獲得個人化健康洞察，在沉浸式環境中練習正念。</p>
                     </div>
                 </div>
                 
@@ -1027,8 +1170,8 @@
                         <i class="fas fa-palette"></i>
                     </div>
                     <div class="experience-content">
-                        <h3>Creative Expression</h3>
-                        <p>Design in 3D space, collaborate with AI on creative projects, and share your imagination with the world through new forms of artistic expression.</p>
+                        <h3>創意表達</h3>
+                        <p>在3D空間中設計，與AI合作創意專案，透過新形式的藝術表達與世界分享您的想像力。</p>
                     </div>
                 </div>
             </div>
@@ -1036,37 +1179,37 @@
     </section>
 
     <!-- Privacy & Security -->
-    <section id="privacy" class="py-20 bg-black">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="section-title center animate-fade-in text-white">Privacy by Design</h2>
+    <section id="privacy" class="py-section" style="background-color: #000;">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title center animate-fade-in text-white">隱私設計</h2>
                 <p class="section-subtitle center animate-fade-in">
-                    Your data, your control, your choice
+                    您的數據，您的控制，您的選擇
                 </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-lock text-3xl text-blue-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Local Processing</h3>
-                        <p class="text-gray-400 text-sm">All personal data processed on-device with our custom AIFNPU. Your private information never leaves your control.</p>
+                        <h3 class="text-lg font-bold mb-3">本地處理</h3>
+                        <p class="text-gray-400 text-sm">所有個人數據由我們的定制AIFNPU在設備上處理。您的私人資訊永遠不會離開您的控制。</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-shield-alt text-3xl text-green-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Hardware Security</h3>
-                        <p class="text-gray-400 text-sm">Dedicated security chip with quantum-resistant encryption. Physical privacy switches for cameras and microphones.</p>
+                        <h3 class="text-lg font-bold mb-3">硬體安全</h3>
+                        <p class="text-gray-400 text-sm">專用安全晶片配備量子抗性加密。攝影機和麥克風的實體隱私開關。</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-user-shield text-3xl text-yellow-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Data Sovereignty</h3>
-                        <p class="text-gray-400 text-sm">Complete control over what data is shared and with whom. Granular permissions for every aspect of your digital identity.</p>
+                        <h3 class="text-lg font-bold mb-3">數據主權</h3>
+                        <p class="text-gray-400 text-sm">完全控制分享的數據和對象。您數位身份每個層面的細粒度權限。</p>
                     </div>
                     
                     <div class="card p-6 animate-slide-up">
                         <i class="fas fa-eye text-3xl text-purple-400 mb-4"></i>
-                        <h3 class="text-lg font-bold mb-3">Transparency</h3>
-                        <p class="text-gray-400 text-sm">Clear visibility into how your data is used. No hidden algorithms or data collection. Open about our AI processes.</p>
+                        <h3 class="text-lg font-bold mb-3">透明度</h3>
+                        <p class="text-gray-400 text-sm">清楚了解您的數據如何使用。沒有隱藏演算法或數據收集。公開我們的AI流程。</p>
                     </div>
                 </div>
             </div>
@@ -1074,133 +1217,128 @@
     </section>
 
     <!-- Future Vision -->
-    <section class="py-20 bg-gradient-to-br from-purple-900 to-blue-900">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in text-white">The Future is Personal</h2>
+    <section class="py-section" style="background: linear-gradient(135deg, #7c3aed, #1e40af);">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in text-white">未來是個人化的</h2>
             <p class="section-subtitle center animate-fade-in">
-                AIFGLASS is more than a device—it's the foundation for the next era of human experience
+                AIFGLASS 不只是一個設備——它是下一個人類體驗時代的基礎
             </p>
             
-            <div class="max-w-6xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card p-8 animate-slide-up">
-                        <h3 class="text-2xl font-bold mb-4 gradient-text">Beyond the Screen</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            We envision a post-screen society where digital information seamlessly integrates with the physical world. 
-                            AIFGLASS represents the first step toward invisible computing that enhances rather than distracts from human experience.
-                        </p>
-                    </div>
-                    
-                    <div class="card p-8 animate-slide-up">
-                        <h3 class="text-2xl font-bold mb-4 gradient-text">Human-AI Symbiosis</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            Our AI doesn't replace human creativity—it amplifies it. AIFGLASS creates a new form of human-AI collaboration 
-                            where artificial intelligence serves as a creative partner, enhancing human potential rather than replacing it.
-                        </p>
-                    </div>
-                    
-                    <div class="card p-8 animate-slide-up">
-                        <h3 class="text-2xl font-bold mb-4 gradient-text">Global Connection</h3>
-                        <p class="text-gray-300 leading-relaxed">
-                            AIFGLASS connects people across cultures and distances through shared experiences while respecting individual perspectives. 
-                            It's technology that brings us together rather than isolating us in digital bubbles.
-                        </p>
-                    </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-6 animate-slide-up">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">超越螢幕</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        我們設想一個後螢幕社會，數位資訊與實體世界無縫整合。AIFGLASS 代表邁向隱形運算的第一步，增強而非分散人類體驗。
+                    </p>
+                </div>
+                
+                <div class="card p-6 animate-slide-up">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">人機共生</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        我們的AI不會取代人類創造力——它會放大它。AIFGLASS 創造了一種新的人機協作形式，AI作為創意夥伴，增強人類潛能而非取代它。
+                    </p>
+                </div>
+                
+                <div class="card p-6 animate-slide-up">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">全球連接</h3>
+                    <p class="text-gray-300 leading-relaxed">
+                        AIFGLASS 透過共享體驗連接跨文化和距離的人們，同時尊重個人觀點。這是將我們團結而非孤立在數位泡泡中的技術。
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Ecosystem Partners -->
-    <section class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="section-title text-center center animate-fade-in">Ecosystem Partners</h2>
+    <section class="py-section">
+        <div class="container">
+            <h2 class="section-title text-center center animate-fade-in">生態夥伴</h2>
             <p class="section-subtitle center animate-fade-in">
-                Building the future together with world-class partners
+                與世界級夥伴共同建構未來
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="card p-6 text-center animate-slide-up">
                     <i class="fas fa-film text-3xl text-blue-400 mb-4"></i>
-                    <h3 class="text-lg font-bold mb-3">Content Creators</h3>
-                    <p class="text-gray-400 text-sm">Global partnership with 404.world and HKAIIFF ecosystem for unlimited content creation</p>
+                    <h3 class="text-lg font-bold mb-3">內容創作者</h3>
+                    <p class="text-gray-400 text-sm">與404.world和HKAIIFF生態系統的全球夥伴關係，提供無限內容創作</p>
                 </div>
                 
                 <div class="card p-6 text-center animate-slide-up">
                     <i class="fas fa-microchip text-3xl text-green-400 mb-4"></i>
-                    <h3 class="text-lg font-bold mb-3">Technology Leaders</h3>
-                    <p class="text-gray-400 text-sm">Collaborations with semiconductor, AI, and cloud computing industry leaders</p>
+                    <h3 class="text-lg font-bold mb-3">技術領導者</h3>
+                    <p class="text-gray-400 text-sm">與半導體、AI和雲端運算業界領導者合作</p>
                 </div>
                 
                 <div class="card p-6 text-center animate-slide-up">
                     <i class="fas fa-music text-3xl text-yellow-400 mb-4"></i>
-                    <h3 class="text-lg font-bold mb-3">Entertainment Industry</h3>
-                    <p class="text-gray-400 text-sm">Partnerships with major studios, streaming platforms, and entertainment venues</p>
+                    <h3 class="text-lg font-bold mb-3">娛樂產業</h3>
+                    <p class="text-gray-400 text-sm">與主要工作室、串流平台和娛樂場所的夥伴關係</p>
                 </div>
                 
                 <div class="card p-6 text-center animate-slide-up">
                     <i class="fas fa-code text-3xl text-purple-400 mb-4"></i>
-                    <h3 class="text-lg font-bold mb-3">Developer Community</h3>
-                    <p class="text-gray-400 text-sm">Comprehensive SDK and tools for developers creating next-generation experiences</p>
+                    <h3 class="text-lg font-bold mb-3">開發者社群</h3>
+                    <p class="text-gray-400 text-sm">為開發者創造下一代體驗提供全面的SDK和工具</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Final CTA -->
-    <section class="py-20 bg-gradient-to-r from-blue-600 to-purple-600" id="preorder">
-        <div class="container mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in">Step Into Tomorrow</h2>
+    <section class="py-section" style="background: linear-gradient(135deg, #1e40af, #7c3aed);" id="preorder">
+        <div class="container text-center">
+            <h2 class="text-responsive-lg font-bold mb-6 animate-fade-in">踏入明天</h2>
             <p class="text-xl text-gray-200 mb-8 animate-fade-in">
-                Be among the first to experience the future of human-computer interaction
+                成為首批體驗人機互動未來的用戶
             </p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 animate-slide-up">
-                <a href="#" class="btn-primary px-8 py-4 rounded-full font-medium text-lg bg-white text-purple-600 hover:bg-gray-100">
-                    Reserve Your AIFGLASS
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12 animate-slide-up">
+                <a href="#" class="btn-primary btn-responsive bg-white text-purple-600 hover:bg-gray-100">
+                    預約您的 AIFGLASS
                 </a>
-                <a href="#" class="btn-secondary px-8 py-4 rounded-full font-medium text-lg border-white text-white hover:bg-white hover:text-purple-600">
-                    Join the Beta Program
+                <a href="#" class="btn-secondary btn-responsive border-white text-white hover:bg-white hover:text-purple-600">
+                    加入測試計畫
                 </a>
             </div>
             
-            <div class="border-t border-white border-opacity-20 pt-8 animate-fade-in">
-                <p class="text-gray-300">Expected availability: Q3 2027 | Pre-orders starting Q1 2027</p>
+            <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 2rem;" class="animate-fade-in">
+                <p class="text-gray-300">預期上市時間：2027年第三季 | 預購開始：2027年第一季</p>
             </div>
         </div>
     </section>
 
     <!-- Newsletter -->
-    <section class="py-16 bg-gray-900">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-3xl font-bold mb-6">Stay Connected to the Future</h2>
+    <section class="py-section" style="background-color: rgba(26, 32, 44, 0.5);">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold mb-6">保持與未來的連接</h2>
                 <p class="text-xl text-gray-300 mb-8">
-                    Subscribe for exclusive updates, early access opportunities, and insights into the AI-native future.
+                    訂閱以獲取獨家更新、搶先體驗機會和AI原生未來的洞察。
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-                    <input type="email" placeholder="Enter your email" class="input-field rounded-full px-6 py-3 flex-1">
-                    <button class="btn-primary px-8 py-3 rounded-full font-medium">
-                        Subscribe
+                    <input type="email" placeholder="輸入您的電子郵件" class="flex-1 px-6 py-3 rounded-full bg-gray-800 border border-gray-600 text-white placeholder-gray-400 focus:border-green-400 focus:outline-none">
+                    <button class="btn-primary btn-responsive">
+                        訂閱
                     </button>
                 </div>
                 <p class="text-sm text-gray-500 mt-4">
-                    Join 50,000+ visionaries already on the list. Unsubscribe anytime.
+                    加入50,000+已在名單上的遠見者。隨時可以取消訂閱。
                 </p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 bg-black" id="contact">
-        <div class="container mx-auto px-4">
+    <footer class="py-16" style="background-color: #000;" id="contact">
+        <div class="container">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex flex-col items-start mb-6">
                         <div class="logo-font text-3xl">AIFGLASS</div>
-                        <div class="logo-sub">AI-NATIVE REALITY</div>
+                        <div class="logo-sub">AI原生現實</div>
                     </div>
-                    <p class="text-gray-400 mb-6">
-                        The AI-Native Digital Reality Foundation Device. Redefining human experience through invisible computing and infinite personalization.
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        AI原生數位現實基礎設備。透過隱形運算和無限個人化重新定義人類體驗。
                     </p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-blue-400 transition"><i class="fab fa-twitter text-xl"></i></a>
@@ -1212,49 +1350,108 @@
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4 gradient-text">Products</h3>
+                    <h3 class="text-lg font-bold mb-4 gradient-text">產品</h3>
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-400 hover:text-white transition">AIFGLASS Core</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">AIFGLASS Pro</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">AIFGLASS Max</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Accessories</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Enterprise Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">配件</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">企業解決方案</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4 gradient-text">Developers</h3>
+                    <h3 class="text-lg font-bold mb-4 gradient-text">開發者</h3>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">SDK Documentation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Developer Portal</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">API Reference</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Community Forum</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Creator Program</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">SDK 文檔</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">開發者門戶</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">API 參考</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">社群論壇</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">創作者計畫</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-lg font-bold mb-4 gradient-text">Company</h3>
+                    <h3 class="text-lg font-bold mb-4 gradient-text">公司</h3>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">關於我們</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">職業機會</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">隱私政策</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">服務條款</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">聯絡我們</a></li>
                     </ul>
                 </div>
             </div>
             
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
-                <p class="text-gray-500">&copy; 2025 AIFGLASS. All rights reserved. | Designing the future of human experience.</p>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 3rem; padding-top: 2rem;" class="text-center">
+                <p class="text-gray-500">&copy; 2025 AIFGLASS. 版權所有。| 設計人類體驗的未來。</p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Mobile menu functionality
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const body = document.body;
+
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.add('active');
+            body.classList.add('menu-open');
+        }
+
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+
+        mobileNavBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking on links
+        document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    closeMobileMenu();
+                    
+                    // Calculate offset for fixed navbar
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = target.offsetTop - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
         // Add random data streams
         function createDataStreams() {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 3; i++) {
                 setTimeout(() => {
                     const stream = document.createElement('div');
                     stream.className = 'data-stream';
@@ -1264,19 +1461,21 @@
                     
                     // Remove after animation
                     setTimeout(() => {
-                        stream.remove();
+                        if (stream.parentNode) {
+                            stream.remove();
+                        }
                     }, 4000);
                 }, i * 3000);
             }
         }
-        
-        // Initialize
+
+        // Initialize animations and effects
         document.addEventListener('DOMContentLoaded', function() {
             // Start data streams
             createDataStreams();
             setInterval(createDataStreams, 15000);
             
-            // Add scroll animations
+            // Intersection Observer for animations
             const animatedElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up, .animate-slide-right');
             
             const observer = new IntersectionObserver((entries) => {
@@ -1292,9 +1491,10 @@
                         if (entry.target.classList.contains('animate-fade-in')) {
                             entry.target.style.transform = 'scale(1)';
                         }
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1, rootMargin: '50px' });
             
             animatedElements.forEach(el => {
                 el.style.opacity = '0';
@@ -1309,87 +1509,50 @@
                 }
                 observer.observe(el);
             });
+
+            // Newsletter subscription
+            const newsletterForm = document.querySelector('input[type="email"]');
+            const subscribeBtn = document.querySelector('input[type="email"] + button');
             
-            // Mobile menu functionality
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const mobileMenuClose = document.querySelector('.mobile-menu-close');
-            
-            if (mobileMenuBtn && mobileMenu && mobileMenuClose) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    mobileMenu.classList.add('open');
-                    document.body.style.overflow = 'hidden';
-                });
-                
-                mobileMenuClose.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = 'auto';
+            if (newsletterForm && subscribeBtn) {
+                subscribeBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const email = newsletterForm.value;
+                    if (email && email.includes('@')) {
+                        alert('感謝您的訂閱！您將收到有關 AIFGLASS 開發和上市的更新。');
+                        newsletterForm.value = '';
+                    } else {
+                        alert('請輸入有效的電子郵件地址。');
+                    }
                 });
             }
             
-            // Smooth scrolling for anchor links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-            
-            // Parallax effect for hero background
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const heroBackground = document.querySelector('.hero-bg');
-                if (heroBackground) {
-                    heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+            // Pre-order button functionality
+            document.querySelectorAll('a[href="#preorder"], a[href="#"]').forEach(btn => {
+                if (btn.textContent.includes('預購') || btn.textContent.includes('預約')) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('預購將於 2027 年第一季開始。加入我們的電子報以在預購開放時收到通知！');
+                    });
                 }
             });
             
-            // Navbar background change on scroll
-            window.addEventListener('scroll', () => {
-                const navbar = document.querySelector('.navbar');
-                if (window.scrollY > 100) {
-                    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.98)';
-                } else {
-                    navbar.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+            // Beta program button
+            document.querySelectorAll('a').forEach(btn => {
+                if (btn.textContent.includes('測試計畫')) {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        alert('測試計畫申請將於 2026 年第四季開放。訂閱我們的電子報以獲得搶先體驗通知！');
+                    });
                 }
             });
-            
-            // Button hover effects
-            document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
-                btn.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-3px)';
-                });
-                
-                btn.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Card hover effects
-            document.querySelectorAll('.card, .stats-card, .experience-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    if (!this.style.transform.includes('translateY')) {
-                        this.style.transform = 'translateY(-8px)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
+
             // Dynamic tech numbers animation
             function animateNumbers() {
                 const techNumbers = document.querySelectorAll('.tech-number');
                 techNumbers.forEach(number => {
                     const text = number.textContent;
-                    if (text.includes('+') || text.includes('K') || text.includes('hr') || text.includes('ms')) {
+                    if (text.includes('+') || text.includes('K') || text.includes('小時') || text.includes('ms')) {
                         const value = parseInt(text);
                         if (!isNaN(value) && value > 1) {
                             let current = 0;
@@ -1421,70 +1584,69 @@
                 
                 techObserver.observe(techSection);
             }
-            
-            // Newsletter subscription
-            const newsletterForm = document.querySelector('input[type="email"]');
-            const subscribeBtn = document.querySelector('input[type="email"] + button');
-            
-            if (newsletterForm && subscribeBtn) {
-                subscribeBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const email = newsletterForm.value;
-                    if (email && email.includes('@')) {
-                        alert('Thank you for subscribing! You\'ll receive updates about AIFGLASS development and launch.');
-                        newsletterForm.value = '';
-                    } else {
-                        alert('Please enter a valid email address.');
-                    }
-                });
-            }
-            
-            // Pre-order button functionality
-            document.querySelectorAll('a[href="#preorder"], a[href="#"]').forEach(btn => {
-                if (btn.textContent.includes('Pre-order') || btn.textContent.includes('Reserve')) {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        alert('Pre-orders will begin in Q1 2027. Join our newsletter to be notified when pre-orders open!');
-                    });
-                }
-            });
-            
-            // Beta program button
-            document.querySelectorAll('a').forEach(btn => {
-                if (btn.textContent.includes('Beta Program')) {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        alert('Beta program applications will open in Q4 2026. Subscribe to our newsletter for early access notifications!');
-                    });
-                }
-            });
-            
-            // Easter egg: Konami code
-            let konamiCode = [];
-            const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
-            
+
+            // Handle keyboard navigation for accessibility
             document.addEventListener('keydown', function(e) {
-                konamiCode.push(e.code);
-                if (konamiCode.length > konami.length) {
-                    konamiCode.shift();
-                }
-                
-                if (konamiCode.length === konami.length && konamiCode.every((code, i) => code === konami[i])) {
-                    // Easter egg activation
-                    document.body.style.filter = 'hue-rotate(180deg)';
-                    setTimeout(() => {
-                        document.body.style.filter = 'none';
-                        alert('🎉 Welcome to the parallel universe of AIFGLASS! You\'ve unlocked exclusive developer preview access.');
-                    }, 2000);
-                    konamiCode = [];
+                if (e.key === 'Escape') {
+                    closeMobileMenu();
                 }
             });
-            
-            // Dynamic AI elements positioning
+
+            // Touch gesture support for mobile menu
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            document.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 100;
+                const swipeDistance = touchEndX - touchStartX;
+                
+                // Swipe right to left (close menu)
+                if (swipeDistance < -swipeThreshold && mobileMenu.classList.contains('open')) {
+                    closeMobileMenu();
+                }
+            }
+
+            // Performance optimization: Throttle scroll events
+            function throttle(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Apply throttling to scroll events
+            window.addEventListener('scroll', throttle(() => {
+                // Parallax effect for hero background
+                const scrolled = window.pageYOffset;
+                const heroBackground = document.querySelector('.hero-bg');
+                if (heroBackground && window.innerWidth > 768) {
+                    heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            }, 16)); // ~60fps
+
+            // Dynamic AI elements positioning (mobile optimized)
             function updateAIElements() {
                 const aiElements = document.querySelectorAll('.ai-element');
                 aiElements.forEach((element, index) => {
-                    const randomX = Math.random() * 80 + 10; // 10% to 90%
+                    // Keep elements in safe zones on mobile
+                    const isMobile = window.innerWidth < 768;
+                    const randomX = isMobile ? 
+                        (Math.random() * 60 + 20) : // 20% to 80% on mobile
+                        (Math.random() * 80 + 10);  // 10% to 90% on desktop
                     const randomY = Math.random() * 60 + 20; // 20% to 80%
                     
                     setTimeout(() => {
@@ -1497,43 +1659,35 @@
             
             // Update AI elements every 10 seconds
             setInterval(updateAIElements, 10000);
-            
-            // Loading performance optimization
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            imageObserver.unobserve(img);
-                        }
+
+            // Optimize for mobile performance
+            if ('serviceWorker' in navigator && 'caches' in window) {
+                // Simple caching strategy for better mobile performance
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('/sw.js').catch(function() {
+                        // Service worker registration failed - not critical
                     });
-                });
-                
-                document.querySelectorAll('img[data-src]').forEach(img => {
-                    imageObserver.observe(img);
                 });
             }
         });
-        
-        // Performance optimization: Throttle scroll events
-        function throttle(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-        
-        // Apply throttling to scroll events
-        window.addEventListener('scroll', throttle(() => {
-            // Scroll-based animations and effects are handled here
-        }, 16)); // ~60fps
+
+        // Prevent zoom on double tap for better mobile UX
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Handle orientation change
+        window.addEventListener('orientationchange', function() {
+            // Close mobile menu on orientation change
+            setTimeout(closeMobileMenu, 100);
+        });
     </script>
 </body>
 </html>
+                
+                
