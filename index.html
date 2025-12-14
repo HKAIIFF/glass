@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404GLASS - AI-Native Digital Reality Platform</title>
+    <title>AIFGlass - AI-Native Digital Reality Platform</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -92,6 +92,25 @@
             background: var(--primary);
             color: var(--dark);
             transform: translateY(-3px);
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary);
         }
         
         .hero-section {
@@ -298,8 +317,10 @@
             border-color: var(--primary);
         }
         
+        /* Optimized for mobile: max-width and percentage width */
         .glass-frame {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 150px;
             background: linear-gradient(135deg, 
                 rgba(0, 255, 157, 0.2) 0%,
@@ -313,22 +334,22 @@
         }
         
         .glass-lens {
-            width: 120px;
-            height: 80px;
+            width: 35%; /* Responsive width */
+            height: 55%; /* Responsive height */
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(20px);
             border-radius: 20px;
             position: absolute;
-            top: 35px;
+            top: 22%;
             border: 1px solid rgba(0, 255, 157, 0.4);
         }
         
         .glass-lens.left {
-            left: 30px;
+            left: 10%;
         }
         
         .glass-lens.right {
-            right: 30px;
+            right: 10%;
         }
         
         .glass-bridge {
@@ -336,7 +357,7 @@
             height: 4px;
             background: rgba(0, 255, 157, 0.6);
             position: absolute;
-            top: 73px;
+            top: 48%;
             left: 50%;
             transform: translateX(-50%);
             border-radius: 2px;
@@ -349,15 +370,16 @@
             margin-top: 60px;
         }
         
-        /* Ecosystem Visualization */
+        /* Ecosystem Visualization - Mobile Optimized */
         .ecosystem-visual {
             background: radial-gradient(circle at center, 
                 rgba(0, 255, 157, 0.2) 0%,
                 rgba(52, 152, 219, 0.1) 50%,
                 transparent 70%);
             border-radius: 50%;
-            width: 400px;
-            height: 400px;
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1/1; /* Maintain circle ratio */
             margin: 0 auto;
             position: relative;
             display: flex;
@@ -367,8 +389,8 @@
         
         .ecosystem-node {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            width: 20%; /* Responsive node size */
+            height: 20%;
             background: rgba(0, 255, 157, 0.2);
             backdrop-filter: blur(10px);
             border: 2px solid var(--primary);
@@ -377,6 +399,7 @@
             align-items: center;
             justify-content: center;
             animation: orbit 10s linear infinite;
+            /* Reset transform for better control via JS/Keyframes */
         }
         
         .ecosystem-node:nth-child(1) { animation-delay: 0s; }
@@ -385,8 +408,9 @@
         .ecosystem-node:nth-child(4) { animation-delay: -7.5s; }
         
         @keyframes orbit {
-            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
-            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+            /* Adjusted orbit radius using percentages for responsiveness */
+            from { transform: rotate(0deg) translateX(140%) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(140%) rotate(-360deg); }
         }
         
         /* Future Timeline */
@@ -458,6 +482,7 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 14px;
+            white-space: nowrap;
         }
         
         /* Footer */
@@ -501,38 +526,19 @@
             }
             
             .glass-frame {
-                width: 250px;
-                height: 125px;
+                max-width: 280px;
+                height: 140px;
             }
             
             .glass-lens {
-                width: 100px;
-                height: 65px;
-                top: 30px;
-            }
-            
-            .glass-lens.left {
-                left: 25px;
-            }
-            
-            .glass-lens.right {
-                right: 25px;
+                top: 25%;
             }
             
             .ecosystem-visual {
-                width: 300px;
-                height: 300px;
+                max-width: 300px;
             }
             
-            .ecosystem-node {
-                width: 60px;
-                height: 60px;
-            }
-            
-            @keyframes orbit {
-                from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
-                to { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
-            }
+            /* Orbit adjustments for mobile handled by % units in main css */
             
             .timeline-item {
                 flex-direction: column !important;
@@ -584,6 +590,17 @@
             .hero-content p {
                 font-size: 1rem;
             }
+            
+            /* Adjust timeline for very small screens */
+            .timeline-line {
+                display: none;
+            }
+            .timeline-dot {
+                display: none;
+            }
+            .timeline-content {
+                margin: 0 0 30px 0;
+            }
         }
         
         /* AI Particles Background */
@@ -625,6 +642,8 @@
             display: flex;
             gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap; /* Optimization for mobile */
+            justify-content: center;
         }
         
         .demo-button {
@@ -648,12 +667,13 @@
             font-weight: 600;
         }
         
-        /* Feature Highlight */
+        /* Feature Highlight - Mobile Optimized */
         .feature-highlight {
             position: relative;
             overflow: hidden;
             border-radius: 20px;
-            height: 400px;
+            min-height: 400px; /* Changed from fixed height */
+            height: auto;
             display: flex;
             align-items: center;
         }
@@ -690,8 +710,10 @@
             width: 150px;
             text-align: center;
             position: relative;
+            margin-bottom: 20px;
         }
         
+        /* Hide arrows on mobile wrap */
         .value-step:not(:last-child)::after {
             content: '→';
             position: absolute;
@@ -700,6 +722,12 @@
             transform: translateY(-50%);
             font-size: 24px;
             color: var(--primary);
+        }
+        
+        @media (max-width: 640px) {
+            .value-step:not(:last-child)::after {
+                display: none; /* Hide arrows on mobile */
+            }
         }
         
         .value-icon {
@@ -745,20 +773,24 @@
     <nav class="navbar">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
-                <div class="logo-font">404GLASS</div>
+                <div class="logo-font">AIFGlass</div>
                 
-                <div class="hidden lg:flex space-x-8 desktop-nav">
-                    <a href="#home" class="hover:text-green-400 transition">Home</a>
-                    <a href="#product" class="hover:text-green-400 transition">Product</a>
-                    <a href="#technology" class="hover:text-green-400 transition">Technology</a>
-                    <a href="#ecosystem" class="hover:text-green-400 transition">Ecosystem</a>
-                    <a href="#applications" class="hover:text-green-400 transition">Applications</a>
-                    <a href="#future" class="hover:text-green-400 transition">Future</a>
-                    <a href="#order" class="hover:text-green-400 transition">Order</a>
+                <div class="hidden lg:flex space-x-6 xl:space-x-8 desktop-nav">
+                    <a href="#home" class="hover:text-green-400 transition" data-i18n="nav_home">Home</a>
+                    <a href="#product" class="hover:text-green-400 transition" data-i18n="nav_product">Product</a>
+                    <a href="#technology" class="hover:text-green-400 transition" data-i18n="nav_tech">Technology</a>
+                    <a href="#ecosystem" class="hover:text-green-400 transition" data-i18n="nav_eco">Ecosystem</a>
+                    <a href="#applications" class="hover:text-green-400 transition" data-i18n="nav_app">Applications</a>
+                    <a href="#future" class="hover:text-green-400 transition" data-i18n="nav_future">Future</a>
+                    <a href="#order" class="hover:text-green-400 transition" data-i18n="nav_order">Order</a>
                 </div>
                 
                 <div class="flex items-center space-x-4">
-                    <a href="#order" class="btn-primary hidden md:inline-block">Pre-Order Now</a>
+                    <button id="lang-toggle" class="lang-btn">
+                        <i class="fas fa-globe"></i>
+                        <span id="current-lang">EN/繁中</span>
+                    </button>
+                    <a href="#order" class="btn-primary hidden md:inline-block" data-i18n="nav_preorder">Pre-Order Now</a>
                     <button class="lg:hidden text-white mobile-menu-btn">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
@@ -774,15 +806,15 @@
         </button>
         
         <div class="flex flex-col space-y-6 text-center">
-            <a href="#home" class="text-xl hover:text-green-400 transition">Home</a>
-            <a href="#product" class="text-xl hover:text-green-400 transition">Product</a>
-            <a href="#technology" class="text-xl hover:text-green-400 transition">Technology</a>
-            <a href="#ecosystem" class="text-xl hover:text-green-400 transition">Ecosystem</a>
-            <a href="#applications" class="text-xl hover:text-green-400 transition">Applications</a>
-            <a href="#future" class="text-xl hover:text-green-400 transition">Future</a>
-            <a href="#order" class="text-xl hover:text-green-400 transition">Order</a>
+            <a href="#home" class="text-xl hover:text-green-400 transition" data-i18n="nav_home">Home</a>
+            <a href="#product" class="text-xl hover:text-green-400 transition" data-i18n="nav_product">Product</a>
+            <a href="#technology" class="text-xl hover:text-green-400 transition" data-i18n="nav_tech">Technology</a>
+            <a href="#ecosystem" class="text-xl hover:text-green-400 transition" data-i18n="nav_eco">Ecosystem</a>
+            <a href="#applications" class="text-xl hover:text-green-400 transition" data-i18n="nav_app">Applications</a>
+            <a href="#future" class="text-xl hover:text-green-400 transition" data-i18n="nav_future">Future</a>
+            <a href="#order" class="text-xl hover:text-green-400 transition" data-i18n="nav_order">Order</a>
             <div class="pt-6">
-                <a href="#order" class="btn-primary w-full text-center">Pre-Order Now</a>
+                <a href="#order" class="btn-primary w-full text-center" data-i18n="nav_preorder">Pre-Order Now</a>
             </div>
         </div>
     </div>
@@ -801,42 +833,42 @@
                     </div>
                 </div>
                 
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight" data-i18n="hero_title">
                     Your Reality, <br>
                     <span class="gradient-text">Infinite Possibilities</span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl">
-                    404GLASS: The world's first AI-native digital reality platform. 
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl" data-i18n="hero_desc">
+                    AIFGlass: The world's first AI-native digital reality platform. 
                     Experience infinite parallel worlds, personalized content, and seamless reality augmentation 
                     through revolutionary spatial computing technology.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
-                    <a href="#order" class="btn-primary text-center">
+                    <a href="#order" class="btn-primary text-center" data-i18n="hero_btn_primary">
                         Pre-Order Starting $899
                     </a>
-                    <a href="#experience" class="btn-secondary text-center">
+                    <a href="#experience" class="btn-secondary text-center" data-i18n="hero_btn_secondary">
                         Book Experience
                     </a>
                 </div>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                     <div class="glass-effect p-4 rounded-lg">
-                        <div class="text-2xl font-bold gradient-text">24H</div>
-                        <div class="text-sm">Battery Life</div>
+                        <div class="text-2xl font-bold gradient-text" data-i18n="stat_battery_val">24H</div>
+                        <div class="text-sm" data-i18n="stat_battery_label">Battery Life</div>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
-                        <div class="text-2xl font-bold gradient-text">3000+</div>
-                        <div class="text-sm">PPI Display</div>
+                        <div class="text-2xl font-bold gradient-text" data-i18n="stat_ppi_val">3000+</div>
+                        <div class="text-sm" data-i18n="stat_ppi_label">PPI Display</div>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
                         <div class="text-2xl font-bold gradient-text">∞</div>
-                        <div class="text-sm">Parallel Worlds</div>
+                        <div class="text-sm" data-i18n="stat_worlds_label">Parallel Worlds</div>
                     </div>
                     <div class="glass-effect p-4 rounded-lg">
                         <div class="text-2xl font-bold gradient-text">AI</div>
-                        <div class="text-sm">Native</div>
+                        <div class="text-sm" data-i18n="stat_native_label">Native</div>
                     </div>
                 </div>
             </div>
@@ -849,26 +881,26 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="prod_title">
                     The <span class="gradient-text">iPhone</span> of the AI Era
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    404GLASS isn't just another AR device. It's a foundational platform that defines 
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="prod_desc">
+                    AIFGlass isn't just another AR device. It's a foundational platform that defines 
                     a new category of AI-native computing, built from the ground up for personalized digital experiences.
                 </p>
             </div>
             
             <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
                 <div>
-                    <h3 class="text-3xl font-bold mb-6">Revolutionary Design Philosophy</h3>
+                    <h3 class="text-3xl font-bold mb-6" data-i18n="design_title">Revolutionary Design Philosophy</h3>
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
                             <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                 <i class="fas fa-eye text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">Invisible Computing</h4>
-                                <p class="text-gray-300">Elegant, everyday wearable glasses indistinguishable from premium eyewear. Technology that enhances rather than replaces human capabilities.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="feat1_title">Invisible Computing</h4>
+                                <p class="text-gray-300" data-i18n="feat1_desc">Elegant, everyday wearable glasses indistinguishable from premium eyewear. Technology that enhances rather than replaces human capabilities.</p>
                             </div>
                         </div>
                         
@@ -877,8 +909,8 @@
                                 <i class="fas fa-brain text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">AI-First Architecture</h4>
-                                <p class="text-gray-300">Purpose-built for AI-powered personalized experiences with custom AIFNPU for real-time content generation.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="feat2_title">AI-First Architecture</h4>
+                                <p class="text-gray-300" data-i18n="feat2_desc">Purpose-built for AI-powered personalized experiences with custom AIFNPU for real-time content generation.</p>
                             </div>
                         </div>
                         
@@ -887,8 +919,8 @@
                                 <i class="fas fa-shield-alt text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">Privacy by Design</h4>
-                                <p class="text-gray-300">All personal data processing occurs on-device. Your data never leaves your control, ensuring complete privacy sovereignty.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="feat3_title">Privacy by Design</h4>
+                                <p class="text-gray-300" data-i18n="feat3_desc">All personal data processing occurs on-device. Your data never leaves your control, ensuring complete privacy sovereignty.</p>
                             </div>
                         </div>
                     </div>
@@ -896,9 +928,10 @@
                 
                 <div class="text-center">
                     <div class="relative">
-                        <div class="glass-frame mx-auto mb-8" style="width: 400px; height: 200px;">
-                            <div class="glass-lens left" style="width: 150px; height: 100px; top: 50px; left: 40px;"></div>
-                            <div class="glass-lens right" style="width: 150px; height: 100px; top: 50px; right: 40px;"></div>
+                        <!-- Modified style for glass-frame to be responsive via class instead of inline style -->
+                        <div class="glass-frame mx-auto mb-8">
+                            <div class="glass-lens left"></div>
+                            <div class="glass-lens right"></div>
                             <div class="glass-bridge"></div>
                             
                             <!-- AI Processing Indicators -->
@@ -913,15 +946,15 @@
                         <div class="grid grid-cols-3 gap-4 text-center">
                             <div class="glass-effect p-3 rounded-lg">
                                 <div class="text-lg font-bold text-green-400">45g</div>
-                                <div class="text-xs">Ultra-light</div>
+                                <div class="text-xs" data-i18n="spec_weight">Ultra-light</div>
                             </div>
                             <div class="glass-effect p-3 rounded-lg">
                                 <div class="text-lg font-bold text-blue-400">4K</div>
-                                <div class="text-xs">Per Eye</div>
+                                <div class="text-xs" data-i18n="spec_res">Per Eye</div>
                             </div>
                             <div class="glass-effect p-3 rounded-lg">
                                 <div class="text-lg font-bold text-purple-400">AI</div>
-                                <div class="text-xs">Neural Chip</div>
+                                <div class="text-xs" data-i18n="spec_chip">Neural Chip</div>
                             </div>
                         </div>
                     </div>
@@ -930,58 +963,58 @@
             
             <!-- Product Line -->
             <div class="mb-16">
-                <h3 class="text-3xl font-bold text-center mb-12">Choose Your Reality</h3>
+                <h3 class="text-3xl font-bold text-center mb-12" data-i18n="choose_title">Choose Your Reality</h3>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="tech-card text-center order-card">
                         <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-glasses text-white text-2xl"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4">404GLASS Explorer</h4>
+                        <h4 class="text-2xl font-bold mb-4">AIFGlass Explorer</h4>
                         <div class="text-3xl font-bold gradient-text mb-4">$899</div>
-                        <p class="text-gray-300 mb-6">Perfect for everyday use. Experience infinite parallel worlds and basic AR enhancement.</p>
-                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                            <li>• 404.world Basic Access</li>
+                        <p class="text-gray-300 mb-6" data-i18n="model1_desc">Perfect for everyday use. Experience infinite parallel worlds and basic AR enhancement.</p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model1_features">
+                            <li>• AIF.world Basic Access</li>
                             <li>• 12-hour Battery Life</li>
                             <li>• Standard AIFNPU</li>
                             <li>• 2K Per Eye Display</li>
                         </ul>
-                        <a href="#order" class="btn-secondary w-full text-center">Pre-Order</a>
+                        <a href="#order" class="btn-secondary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                     </div>
                     
                     <div class="tech-card text-center border-2 border-green-400 order-card relative">
-                        <div class="popular-badge">MOST POPULAR</div>
+                        <div class="popular-badge" data-i18n="badge_popular">MOST POPULAR</div>
                         <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-rocket text-white text-2xl"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4">404GLASS Pro</h4>
+                        <h4 class="text-2xl font-bold mb-4">AIFGlass Pro</h4>
                         <div class="text-3xl font-bold gradient-text mb-4">$1,299</div>
-                        <p class="text-gray-300 mb-6">Professional grade with advanced AI features and creator tools for content development.</p>
-                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                            <li>• 404.world Premium Access</li>
+                        <p class="text-gray-300 mb-6" data-i18n="model2_desc">Professional grade with advanced AI features and creator tools for content development.</p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model2_features">
+                            <li>• AIF.world Premium Access</li>
                             <li>• 24-hour Battery Life</li>
                             <li>• Advanced AIFNPU 2.0</li>
                             <li>• 4K Per Eye Display</li>
                             <li>• Creator Studio Tools</li>
                         </ul>
-                        <a href="#order" class="btn-primary w-full text-center">Pre-Order</a>
+                        <a href="#order" class="btn-primary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                     </div>
                     
                     <div class="tech-card text-center order-card">
                         <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-6">
                             <i class="fas fa-crown text-white text-2xl"></i>
                         </div>
-                        <h4 class="text-2xl font-bold mb-4">404GLASS Creator</h4>
+                        <h4 class="text-2xl font-bold mb-4">AIFGlass Creator</h4>
                         <div class="text-3xl font-bold gradient-text mb-4">$1,799</div>
-                        <p class="text-gray-300 mb-6">Ultimate creative platform with enterprise features and development capabilities.</p>
-                        <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                            <li>• 404.world Creator Access</li>
+                        <p class="text-gray-300 mb-6" data-i18n="model3_desc">Ultimate creative platform with enterprise features and development capabilities.</p>
+                        <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model3_features">
+                            <li>• AIF.world Creator Access</li>
                             <li>• 36-hour Battery Life</li>
                             <li>• Ultra AIFNPU Pro</li>
                             <li>• 8K Per Eye Display</li>
                             <li>• Full Development Suite</li>
                             <li>• Revenue Sharing Access</li>
                         </ul>
-                        <a href="#order" class="btn-secondary w-full text-center">Pre-Order</a>
+                        <a href="#order" class="btn-secondary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                     </div>
                 </div>
             </div>
@@ -989,12 +1022,12 @@
             <!-- Interactive Demo -->
             <div class="demo-container glass-effect">
                 <div class="demo-overlay">
-                    <h3 class="text-3xl font-bold mb-4">Experience 404GLASS</h3>
-                    <p class="text-gray-300 mb-6 max-w-2xl">Select a scenario to see how 404GLASS transforms your reality with AI-powered experiences</p>
+                    <h3 class="text-3xl font-bold mb-4" data-i18n="demo_title">Experience AIFGlass</h3>
+                    <p class="text-gray-300 mb-6 max-w-2xl" data-i18n="demo_desc">Select a scenario to see how AIFGlass transforms your reality with AI-powered experiences</p>
                     <div class="demo-buttons">
-                        <div class="demo-button active" data-scene="city">City Exploration</div>
-                        <div class="demo-button" data-scene="education">Learning</div>
-                        <div class="demo-button" data-scene="social">Social Connection</div>
+                        <div class="demo-button active" data-scene="city" data-i18n="demo_btn_city">City Exploration</div>
+                        <div class="demo-button" data-scene="education" data-i18n="demo_btn_edu">Learning</div>
+                        <div class="demo-button" data-scene="social" data-i18n="demo_btn_social">Social Connection</div>
                     </div>
                 </div>
             </div>
@@ -1007,10 +1040,10 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="tech_title">
                     Revolutionary <span class="gradient-text">Technology</span> Stack
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="tech_desc">
                     Breakthrough innovations in AI processing, display technology, and spatial computing 
                     that make infinite personalized realities possible.
                 </p>
@@ -1022,12 +1055,12 @@
                         <i class="fas fa-microchip text-white text-2xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">AIFNPU 2.0</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">AI Film Neural Processing Unit</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech1_sub">AI Film Neural Processing Unit</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech1_desc">
                         Custom silicon designed specifically for real-time personalized content generation. 
                         Capable of generating 4K video content in real-time based on user data and preferences.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech1_list">
                         <li>• 50 TOPS AI Performance</li>
                         <li>• Real-time 4K Video Generation</li>
                         <li>• On-device Privacy Processing</li>
@@ -1039,13 +1072,13 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-eye text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Quantum Dot Micro-OLED</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">Revolutionary Display Technology</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="tech2_title">Quantum Dot Micro-OLED</h3>
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech2_sub">Revolutionary Display Technology</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech2_desc">
                         Ultra-high pixel density displays with variable opacity for seamless reality blending. 
                         Cinema-quality visuals in a lightweight form factor.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech2_list">
                         <li>• 3,000+ PPI Ultra-HD</li>
                         <li>• Variable Opacity Control</li>
                         <li>• 99% DCI-P3 Color Accuracy</li>
@@ -1057,13 +1090,13 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-satellite-dish text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Adaptive Sensory Array</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">Contextual Intelligence System</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="tech3_title">Adaptive Sensory Array</h3>
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech3_sub">Contextual Intelligence System</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech3_desc">
                         Comprehensive sensor suite that understands both user state and environment 
                         for perfect contextual adaptation and predictive interaction.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech3_list">
                         <li>• Environmental Context Awareness</li>
                         <li>• Emotional State Detection</li>
                         <li>• Social Situation Recognition</li>
@@ -1075,13 +1108,13 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-pink-400 to-red-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-map-marked-alt text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Spatial Computing Engine</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">Centimeter-Level Precision</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="tech4_title">Spatial Computing Engine</h3>
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech4_sub">Centimeter-Level Precision</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech4_desc">
                         Advanced SLAM technology with persistent spatial anchors for seamless AR content 
                         placement and multi-user synchronization.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech4_list">
                         <li>• Sub-Centimeter Tracking</li>
                         <li>• Persistent World Anchors</li>
                         <li>• Multi-user Synchronization</li>
@@ -1093,13 +1126,13 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-battery-full text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">All-Day Power System</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">24-Hour Continuous Use</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="tech5_title">All-Day Power System</h3>
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech5_sub">24-Hour Continuous Use</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech5_desc">
                         Revolutionary battery technology with adaptive power management ensures 
                         all-day usage without compromise on performance.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech5_list">
                         <li>• 24+ Hour Battery Life</li>
                         <li>• 15-Minute Quick Charge</li>
                         <li>• Adaptive Power Management</li>
@@ -1111,13 +1144,13 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-indigo-400 to-blue-500 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-user-shield text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Privacy-First Architecture</h3>
-                    <h4 class="text-lg gradient-text font-semibold mb-3">Zero-Trust Security Model</h4>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="tech6_title">Privacy-First Architecture</h3>
+                    <h4 class="text-lg gradient-text font-semibold mb-3" data-i18n="tech6_sub">Zero-Trust Security Model</h4>
+                    <p class="text-gray-300 mb-4" data-i18n="tech6_desc">
                         Advanced privacy computing ensures personal data never leaves your device. 
                         Complete user control over data sharing and privacy settings.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="tech6_list">
                         <li>• On-device AI Processing</li>
                         <li>• Encrypted Data Transmission</li>
                         <li>• Granular Privacy Controls</li>
@@ -1130,17 +1163,17 @@
             <div class="feature-highlight glass-effect mt-20">
                 <div class="feature-bg" style="background-image: url('https://images.unsplash.com/photo-1586769852836-bc069f19e1b6?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
                 <div class="feature-content">
-                    <h3 class="text-3xl font-bold mb-4">Personalized Reality Engine</h3>
-                    <p class="text-gray-300 mb-6">
+                    <h3 class="text-3xl font-bold mb-4" data-i18n="hl_title">Personalized Reality Engine</h3>
+                    <p class="text-gray-300 mb-6" data-i18n="hl_desc">
                         Our patented AI system creates unique experiences tailored to your personality, 
-                        memories, and current context. Unlike other AR systems, 404GLASS understands 
+                        memories, and current context. Unlike other AR systems, AIFGlass understands 
                         you and adapts in real-time to your emotional state and preferences.
                     </p>
                     <div class="flex items-center">
                         <div class="w-10 h-10 bg-green-400 rounded-full flex items-center justify-center mr-4">
                             <i class="fas fa-brain text-black"></i>
                         </div>
-                        <p class="text-gray-300">Real-time emotion detection and content adaptation</p>
+                        <p class="text-gray-300" data-i18n="hl_tag">Real-time emotion detection and content adaptation</p>
                     </div>
                 </div>
             </div>
@@ -1153,11 +1186,11 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="eco_title">
                     Complete <span class="gradient-text">Ecosystem</span> Platform
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    404GLASS is the hardware foundation of the HKAIIFF ecosystem, 
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="eco_desc">
+                    AIFGlass is the hardware foundation of the HKAIIFF ecosystem, 
                     creating unprecedented synergies between AI film creation, education, and global experiences.
                 </p>
             </div>
@@ -1165,23 +1198,23 @@
             <div class="mb-16">
                 <div class="ecosystem-visual">
                     <div class="text-center">
-                        <div class="w-24 h-24 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mb-4">
+                        <div class="w-24 h-24 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mb-4 mx-auto">
                             <i class="fas fa-glasses text-white text-3xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold">404GLASS</h3>
-                        <p class="text-sm text-gray-400">Hardware Core</p>
+                        <h3 class="text-xl font-bold">AIFGlass</h3>
+                        <p class="text-sm text-gray-400" data-i18n="eco_core">Hardware Core</p>
                     </div>
                     
-                    <div class="ecosystem-node" style="transform: rotate(0deg) translateX(150px) rotate(0deg);">
+                    <div class="ecosystem-node" style="transform: rotate(0deg) translateX(140%) rotate(0deg);">
                         <i class="fas fa-film text-green-400 text-xl"></i>
                     </div>
-                    <div class="ecosystem-node" style="transform: rotate(90deg) translateX(150px) rotate(-90deg);">
+                    <div class="ecosystem-node" style="transform: rotate(90deg) translateX(140%) rotate(-90deg);">
                         <i class="fas fa-graduation-cap text-blue-400 text-xl"></i>
                     </div>
-                    <div class="ecosystem-node" style="transform: rotate(180deg) translateX(150px) rotate(-180deg);">
+                    <div class="ecosystem-node" style="transform: rotate(180deg) translateX(140%) rotate(-180deg);">
                         <i class="fas fa-shopping-cart text-purple-400 text-xl"></i>
                     </div>
-                    <div class="ecosystem-node" style="transform: rotate(270deg) translateX(150px) rotate(-270deg);">
+                    <div class="ecosystem-node" style="transform: rotate(270deg) translateX(140%) rotate(-270deg);">
                         <i class="fas fa-globe text-pink-400 text-xl"></i>
                     </div>
                 </div>
@@ -1191,89 +1224,89 @@
                         <div class="w-16 h-16 bg-green-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-film text-green-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2">404.world Platform</h4>
-                        <p class="text-sm text-gray-300">Infinite parallel worlds with personalized storytelling and user-generated content universes.</p>
+                        <h4 class="text-lg font-bold mb-2">AIF.world Platform</h4>
+                        <p class="text-sm text-gray-300" data-i18n="eco1_desc">Infinite parallel worlds with personalized storytelling and user-generated content universes.</p>
                     </div>
                     
                     <div class="text-center">
                         <div class="w-16 h-16 bg-blue-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-graduation-cap text-blue-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2">AI Film Academy</h4>
-                        <p class="text-sm text-gray-300">Immersive learning experiences and virtual classrooms for AI filmmaking education.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="eco2_title">AI Film Academy</h4>
+                        <p class="text-sm text-gray-300" data-i18n="eco2_desc">Immersive learning experiences and virtual classrooms for AI filmmaking education.</p>
                     </div>
                     
                     <div class="text-center">
                         <div class="w-16 h-16 bg-purple-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-shopping-cart text-purple-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2">AI Film Market</h4>
-                        <p class="text-sm text-gray-300">Creator tools, content distribution, and tokenized revenue sharing for the AI film economy.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="eco3_title">AI Film Market</h4>
+                        <p class="text-sm text-gray-300" data-i18n="eco3_desc">Creator tools, content distribution, and tokenized revenue sharing for the AI film economy.</p>
                     </div>
                     
                     <div class="text-center">
                         <div class="w-16 h-16 bg-pink-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-globe text-pink-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-lg font-bold mb-2">HKAIIFF Festival</h4>
-                        <p class="text-sm text-gray-300">Global participation in film festivals through immersive AR experiences and virtual attendance.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="eco4_title">HKAIIFF Festival</h4>
+                        <p class="text-sm text-gray-300" data-i18n="eco4_desc">Global participation in film festivals through immersive AR experiences and virtual attendance.</p>
                     </div>
                 </div>
             </div>
             
             <!-- Ecosystem Value Flow -->
             <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold mb-8">Ecosystem Value Flow</h3>
+                <h3 class="text-3xl font-bold mb-8" data-i18n="flow_title">Ecosystem Value Flow</h3>
                 <div class="value-flow">
                     <div class="value-step">
                         <div class="value-icon">
                             <i class="fas fa-user"></i>
                         </div>
-                        <h4 class="font-bold mb-2">User</h4>
-                        <p class="text-sm text-gray-300">Personalized experiences</p>
+                        <h4 class="font-bold mb-2" data-i18n="flow1_title">User</h4>
+                        <p class="text-sm text-gray-300" data-i18n="flow1_desc">Personalized experiences</p>
                     </div>
                     <div class="value-step">
                         <div class="value-icon">
                             <i class="fas fa-cogs"></i>
                         </div>
-                        <h4 class="font-bold mb-2">Hardware</h4>
-                        <p class="text-sm text-gray-300">AI processing & rendering</p>
+                        <h4 class="font-bold mb-2" data-i18n="flow2_title">Hardware</h4>
+                        <p class="text-sm text-gray-300" data-i18n="flow2_desc">AI processing & rendering</p>
                     </div>
                     <div class="value-step">
                         <div class="value-icon">
                             <i class="fas fa-cloud"></i>
                         </div>
-                        <h4 class="font-bold mb-2">Platform</h4>
-                        <p class="text-sm text-gray-300">Content delivery & AI</p>
+                        <h4 class="font-bold mb-2" data-i18n="flow3_title">Platform</h4>
+                        <p class="text-sm text-gray-300" data-i18n="flow3_desc">Content delivery & AI</p>
                     </div>
                     <div class="value-step">
                         <div class="value-icon">
                             <i class="fas fa-paint-brush"></i>
                         </div>
-                        <h4 class="font-bold mb-2">Creator</h4>
-                        <p class="text-sm text-gray-300">Content development</p>
+                        <h4 class="font-bold mb-2" data-i18n="flow4_title">Creator</h4>
+                        <p class="text-sm text-gray-300" data-i18n="flow4_desc">Content development</p>
                     </div>
                     <div class="value-step">
                         <div class="value-icon">
                             <i class="fas fa-sync-alt"></i>
                         </div>
-                        <h4 class="font-bold mb-2">Value Loop</h4>
-                        <p class="text-sm text-gray-300">Continuous improvement</p>
+                        <h4 class="font-bold mb-2" data-i18n="flow5_title">Value Loop</h4>
+                        <p class="text-sm text-gray-300" data-i18n="flow5_desc">Continuous improvement</p>
                     </div>
                 </div>
             </div>
             
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h3 class="text-3xl font-bold mb-6">Seamless Integration Benefits</h3>
+                    <h3 class="text-3xl font-bold mb-6" data-i18n="benefit_title">Seamless Integration Benefits</h3>
                     <div class="space-y-6">
                         <div class="flex items-start space-x-4">
                             <div class="w-8 h-8 bg-green-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                                 <i class="fas fa-infinity text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">Infinite Content Universe</h4>
-                                <p class="text-gray-300">Access to the growing universe of AI-native films, user-generated parallel worlds, and exclusive HKAIIFF content.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="ben1_title">Infinite Content Universe</h4>
+                                <p class="text-gray-300" data-i18n="ben1_desc">Access to the growing universe of AI-native films, user-generated parallel worlds, and exclusive HKAIIFF content.</p>
                             </div>
                         </div>
                         
@@ -1282,8 +1315,8 @@
                                 <i class="fas fa-coins text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">Creator Economy</h4>
-                                <p class="text-gray-300">Participate in the AIF token economy through content creation, viewing rewards, and revenue sharing opportunities.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="ben2_title">Creator Economy</h4>
+                                <p class="text-gray-300" data-i18n="ben2_desc">Participate in the AIF token economy through content creation, viewing rewards, and revenue sharing opportunities.</p>
                             </div>
                         </div>
                         
@@ -1292,35 +1325,35 @@
                                 <i class="fas fa-users text-black text-sm"></i>
                             </div>
                             <div>
-                                <h4 class="text-xl font-semibold mb-2">Global Community</h4>
-                                <p class="text-gray-300">Connect with AI filmmakers, educators, and enthusiasts worldwide through shared virtual experiences.</p>
+                                <h4 class="text-xl font-semibold mb-2" data-i18n="ben3_title">Global Community</h4>
+                                <p class="text-gray-300" data-i18n="ben3_desc">Connect with AI filmmakers, educators, and enthusiasts worldwide through shared virtual experiences.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="glass-effect p-8 rounded-2xl">
-                    <h4 class="text-2xl font-bold mb-6 text-center">Ecosystem Value Flow</h4>
+                    <h4 class="text-2xl font-bold mb-6 text-center" data-i18n="flow_title_box">Ecosystem Value Flow</h4>
                     <div class="space-y-4">
                         <div class="flex items-center justify-between p-4 bg-green-400 bg-opacity-10 rounded-lg">
-                            <span class="font-semibold">Content Creation</span>
+                            <span class="font-semibold" data-i18n="val1">Content Creation</span>
                             <i class="fas fa-arrow-right text-green-400"></i>
                         </div>
                         <div class="flex items-center justify-between p-4 bg-blue-400 bg-opacity-10 rounded-lg">
-                            <span class="font-semibold">Education & Training</span>
+                            <span class="font-semibold" data-i18n="val2">Education & Training</span>
                             <i class="fas fa-arrow-right text-blue-400"></i>
                         </div>
                         <div class="flex items-center justify-between p-4 bg-purple-400 bg-opacity-10 rounded-lg">
-                            <span class="font-semibold">Market Distribution</span>
+                            <span class="font-semibold" data-i18n="val3">Market Distribution</span>
                             <i class="fas fa-arrow-right text-purple-400"></i>
                         </div>
                         <div class="flex items-center justify-between p-4 bg-pink-400 bg-opacity-10 rounded-lg">
-                            <span class="font-semibold">Global Experiences</span>
+                            <span class="font-semibold" data-i18n="val4">Global Experiences</span>
                             <i class="fas fa-check text-pink-400"></i>
                         </div>
                     </div>
                     <div class="text-center mt-6">
-                        <p class="text-sm text-gray-300">Complete value cycle with fair revenue distribution for all participants</p>
+                        <p class="text-sm text-gray-300" data-i18n="val_footer">Complete value cycle with fair revenue distribution for all participants</p>
                     </div>
                 </div>
             </div>
@@ -1333,11 +1366,11 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="app_title">
                     Revolutionary <span class="gradient-text">Applications</span>
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    404GLASS transforms every aspect of digital interaction, from entertainment and education 
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="app_desc">
+                    AIFGlass transforms every aspect of digital interaction, from entertainment and education 
                     to work and social experiences, creating new possibilities we've never imagined before.
                 </p>
             </div>
@@ -1347,12 +1380,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-film text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Personalized Entertainment</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case1_title">Personalized Entertainment</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case1_desc">
                         Experience infinite parallel worlds where you're not just watching content—you're living it. 
                         Every story adapts to your preferences, memories, and emotions in real-time.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case1_list">
                         <li>• Your photos and memories integrated into storylines</li>
                         <li>• Infinite unique endings for every piece of content</li>
                         <li>• Social viewing with friends across distances</li>
@@ -1364,12 +1397,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-map-marker-alt text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Location-Based Experiences</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case2_title">Location-Based Experiences</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case2_desc">
                         Transform any location into an interactive story space. Historical sites come alive, 
                         cities become navigable with AR guidance, and every place tells its unique story.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case2_list">
                         <li>• Historical reconstruction of any location</li>
                         <li>• Real-time translation and cultural context</li>
                         <li>• Smart city navigation with AR overlays</li>
@@ -1381,12 +1414,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-briefcase text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Future of Work</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case3_title">Future of Work</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case3_desc">
                         Revolutionize remote collaboration with spatial computing. Work with 3D models, 
                         attend virtual meetings that feel real, and access information contextually.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case3_list">
                         <li>• Holographic video conferencing</li>
                         <li>• 3D collaborative workspaces</li>
                         <li>• Contextual information overlays</li>
@@ -1398,12 +1431,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-pink-400 to-red-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-graduation-cap text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Immersive Education</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case4_title">Immersive Education</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case4_desc">
                         Learn by experiencing. Walk through ancient Rome, manipulate molecular structures, 
                         or attend lectures by Nobel laureates—all through immersive AR experiences.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case4_list">
                         <li>• Virtual field trips to any location or time</li>
                         <li>• 3D visualization of complex concepts</li>
                         <li>• Personalized AI tutors and learning paths</li>
@@ -1415,12 +1448,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-400 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-users text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Social Revolution</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case5_title">Social Revolution</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case5_desc">
                         Connect with friends and family in ways never before possible. Share experiences, 
                         create memories together, and maintain relationships across any distance.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case5_list">
                         <li>• Shared virtual experiences with loved ones</li>
                         <li>• Holographic presence for remote gatherings</li>
                         <li>• Collaborative content creation and storytelling</li>
@@ -1432,12 +1465,12 @@
                     <div class="w-16 h-16 bg-gradient-to-r from-indigo-400 to-blue-500 rounded-full flex items-center justify-center mb-6">
                         <i class="fas fa-heartbeat text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4">Health & Wellness</h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="case6_title">Health & Wellness</h3>
+                    <p class="text-gray-300 mb-4" data-i18n="case6_desc">
                         Transform healthcare with AR-assisted medical procedures, therapeutic experiences, 
                         and personalized wellness programs that adapt to your lifestyle.
                     </p>
-                    <ul class="space-y-2 text-sm text-gray-300">
+                    <ul class="space-y-2 text-sm text-gray-300" data-i18n="case6_list">
                         <li>• AR-guided medical procedures and training</li>
                         <li>• Therapeutic VR experiences for mental health</li>
                         <li>• Real-time health monitoring and alerts</li>
@@ -1446,21 +1479,21 @@
                 </div>
             </div>
             
-            <!-- World404 Theme Park -->
+            <!-- WorldAIF Theme Park -->
             <div class="feature-highlight glass-effect mt-20">
                 <div class="feature-bg" style="background-image: url('https://images.unsplash.com/photo-1542370285-b8eb8317691c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"></div>
                 <div class="feature-content">
-                    <h3 class="text-3xl font-bold mb-4">World404 Theme Parks</h3>
-                    <p class="text-gray-300 mb-6">
-                        Step into our physical theme parks where 404GLASS transforms traditional rides into 
+                    <h3 class="text-3xl font-bold mb-4" data-i18n="park_title">WorldAIF Theme Parks</h3>
+                    <p class="text-gray-300 mb-6" data-i18n="park_desc">
+                        Step into our physical theme parks where AIFGlass transforms traditional rides into 
                         personalized adventures. Each visitor experiences a unique storyline based on their 
                         preferences, creating infinite variations of the same attraction.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <span class="px-4 py-2 bg-green-400 bg-opacity-20 rounded-full text-sm">Tokyo</span>
-                        <span class="px-4 py-2 bg-blue-400 bg-opacity-20 rounded-full text-sm">Orlando</span>
-                        <span class="px-4 py-2 bg-purple-400 bg-opacity-20 rounded-full text-sm">Shanghai</span>
-                        <span class="px-4 py-2 bg-pink-400 bg-opacity-20 rounded-full text-sm">London</span>
+                        <span class="px-4 py-2 bg-green-400 bg-opacity-20 rounded-full text-sm" data-i18n="city_tokyo">Tokyo</span>
+                        <span class="px-4 py-2 bg-blue-400 bg-opacity-20 rounded-full text-sm" data-i18n="city_orlando">Orlando</span>
+                        <span class="px-4 py-2 bg-purple-400 bg-opacity-20 rounded-full text-sm" data-i18n="city_shanghai">Shanghai</span>
+                        <span class="px-4 py-2 bg-pink-400 bg-opacity-20 rounded-full text-sm" data-i18n="city_london">London</span>
                     </div>
                 </div>
             </div>
@@ -1473,11 +1506,11 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="future_title">
                     The <span class="gradient-text">Future</span> We're Building
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    404GLASS is just the beginning. We're laying the foundation for a post-screen society 
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="future_desc">
+                    AIFGlass is just the beginning. We're laying the foundation for a post-screen society 
                     where digital and physical realities seamlessly merge into personalized, intelligent experiences.
                 </p>
             </div>
@@ -1488,12 +1521,12 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="text-2xl font-bold mb-3 gradient-text">2027: AI-Native Computing Era</h3>
-                        <p class="text-gray-300 mb-4">
-                            404GLASS launches globally, establishing the foundation for AI-native computing. 
+                        <h3 class="text-2xl font-bold mb-3 gradient-text" data-i18n="time1_title">2027: AI-Native Computing Era</h3>
+                        <p class="text-gray-300 mb-4" data-i18n="time1_desc">
+                            AIFGlass launches globally, establishing the foundation for AI-native computing. 
                             Early adopters experience the first generation of truly personalized digital content.
                         </p>
-                        <ul class="space-y-1 text-sm text-gray-400">
+                        <ul class="space-y-1 text-sm text-gray-400" data-i18n="time1_list">
                             <li>• 500K devices in tech enthusiasts' hands</li>
                             <li>• 1,000 developers creating native experiences</li>
                             <li>• First AI film festival entirely in AR</li>
@@ -1504,12 +1537,12 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="text-2xl font-bold mb-3 gradient-text">2029: Mainstream Adoption</h3>
-                        <p class="text-gray-300 mb-4">
-                            404GLASS becomes the preferred platform for entertainment, education, and work. 
+                        <h3 class="text-2xl font-bold mb-3 gradient-text" data-i18n="time2_title">2029: Mainstream Adoption</h3>
+                        <p class="text-gray-300 mb-4" data-i18n="time2_desc">
+                            AIFGlass becomes the preferred platform for entertainment, education, and work. 
                             Traditional screens begin their decline as spatial computing takes over.
                         </p>
-                        <ul class="space-y-1 text-sm text-gray-400">
+                        <ul class="space-y-1 text-sm text-gray-400" data-i18n="time2_list">
                             <li>• 10M+ global users</li>
                             <li>• Major entertainment partnerships</li>
                             <li>• AI tutors in 50% of schools</li>
@@ -1520,12 +1553,12 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="text-2xl font-bold mb-3 gradient-text">2032: The Metaverse Foundation</h3>
-                        <p class="text-gray-300 mb-4">
-                            404GLASS becomes the hardware foundation of the metaverse. Persistent digital worlds 
+                        <h3 class="text-2xl font-bold mb-3 gradient-text" data-i18n="time3_title">2032: The Metaverse Foundation</h3>
+                        <p class="text-gray-300 mb-4" data-i18n="time3_desc">
+                            AIFGlass becomes the hardware foundation of the metaverse. Persistent digital worlds 
                             overlay our physical reality, creating a new layer of human experience.
                         </p>
-                        <ul class="space-y-1 text-sm text-gray-400">
+                        <ul class="space-y-1 text-sm text-gray-400" data-i18n="time3_list">
                             <li>• 100M+ connected users worldwide</li>
                             <li>• Digital twin of every major city</li>
                             <li>• 50% of work done in mixed reality</li>
@@ -1536,12 +1569,12 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <h3 class="text-2xl font-bold mb-3 gradient-text">2035: The Post-Screen Society</h3>
-                        <p class="text-gray-300 mb-4">
+                        <h3 class="text-2xl font-bold mb-3 gradient-text" data-i18n="time4_title">2035: The Post-Screen Society</h3>
+                        <p class="text-gray-300 mb-4" data-i18n="time4_desc">
                             Traditional screens become obsolete as spatial computing becomes the primary interface. 
                             Human-computer interaction evolves to natural, contextual AI interfaces.
                         </p>
-                        <ul class="space-y-1 text-sm text-gray-400">
+                        <ul class="space-y-1 text-sm text-gray-400" data-i18n="time4_list">
                             <li>• Smartphones replaced by spatial computers</li>
                             <li>• Television and monitors become legacy technology</li>
                             <li>• Human-AI cognitive collaboration becomes standard</li>
@@ -1552,30 +1585,30 @@
             
             <!-- Social Impact -->
             <div class="glass-effect p-8 rounded-2xl mt-20">
-                <h3 class="text-3xl font-bold mb-6 text-center">Societal Transformation</h3>
+                <h3 class="text-3xl font-bold mb-6 text-center" data-i18n="social_title">Societal Transformation</h3>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="text-center">
                         <div class="w-16 h-16 bg-green-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-globe-americas text-green-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Global Connection</h4>
-                        <p class="text-gray-300">Break down geographical barriers with shared experiences across cultures and locations</p>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="imp1_title">Global Connection</h4>
+                        <p class="text-gray-300" data-i18n="imp1_desc">Break down geographical barriers with shared experiences across cultures and locations</p>
                     </div>
                     
                     <div class="text-center">
                         <div class="w-16 h-16 bg-blue-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-graduation-cap text-blue-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Education Equality</h4>
-                        <p class="text-gray-300">Provide world-class education experiences to anyone, anywhere</p>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="imp2_title">Education Equality</h4>
+                        <p class="text-gray-300" data-i18n="imp2_desc">Provide world-class education experiences to anyone, anywhere</p>
                     </div>
                     
                     <div class="text-center">
                         <div class="w-16 h-16 bg-purple-400 bg-opacity-20 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-brain text-purple-400 text-2xl"></i>
                         </div>
-                        <h4 class="text-xl font-bold mb-2">Cognitive Enhancement</h4>
-                        <p class="text-gray-300">Augment human intelligence and creativity through AI collaboration</p>
+                        <h4 class="text-xl font-bold mb-2" data-i18n="imp3_title">Cognitive Enhancement</h4>
+                        <p class="text-gray-300" data-i18n="imp3_desc">Augment human intelligence and creativity through AI collaboration</p>
                     </div>
                 </div>
             </div>
@@ -1588,56 +1621,56 @@
         
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6" data-i18n="join_title">
                     Join the <span class="gradient-text">Reality Revolution</span>
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Be among the first to experience the future of computing. Pre-order your 404GLASS today 
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto" data-i18n="join_desc">
+                    Be among the first to experience the future of computing. Pre-order your AIFGlass today 
                     and secure exclusive early adopter benefits.
                 </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-16">
                 <div class="tech-card text-center order-card">
-                    <h4 class="text-2xl font-bold mb-4">404GLASS Explorer</h4>
+                    <h4 class="text-2xl font-bold mb-4">AIFGlass Explorer</h4>
                     <div class="text-3xl font-bold gradient-text mb-4">$899</div>
-                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                        <li>• 404.world Basic Access</li>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model1_features_short">
+                        <li>• AIF.world Basic Access</li>
                         <li>• 12-hour Battery Life</li>
                         <li>• Standard AIFNPU</li>
                         <li>• 2K Per Eye Display</li>
                         <li>• Everyday Design</li>
                     </ul>
-                    <a href="#" class="btn-secondary w-full text-center">Pre-Order</a>
+                    <a href="#" class="btn-secondary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                 </div>
                 
                 <div class="tech-card text-center border-2 border-green-400 order-card relative">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h4 class="text-2xl font-bold mb-4">404GLASS Pro</h4>
+                    <div class="popular-badge" data-i18n="badge_popular">MOST POPULAR</div>
+                    <h4 class="text-2xl font-bold mb-4">AIFGlass Pro</h4>
                     <div class="text-3xl font-bold gradient-text mb-4">$1,299</div>
-                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                        <li>• 404.world Premium Access</li>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model2_features_short">
+                        <li>• AIF.world Premium Access</li>
                         <li>• 24-hour Battery Life</li>
                         <li>• Advanced AIFNPU 2.0</li>
                         <li>• 4K Per Eye Display</li>
                         <li>• Creator Studio Tools</li>
                         <li>• Exclusive Content Library</li>
                     </ul>
-                    <a href="#" class="btn-primary w-full text-center">Pre-Order</a>
+                    <a href="#" class="btn-primary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                 </div>
                 
                 <div class="tech-card text-center order-card">
-                    <h4 class="text-2xl font-bold mb-4">404GLASS Creator</h4>
+                    <h4 class="text-2xl font-bold mb-4">AIFGlass Creator</h4>
                     <div class="text-3xl font-bold gradient-text mb-4">$1,799</div>
-                    <ul class="space-y-2 text-sm text-gray-300 mb-6">
-                        <li>• 404.world Creator Access</li>
+                    <ul class="space-y-2 text-sm text-gray-300 mb-6" data-i18n="model3_features_short">
+                        <li>• AIF.world Creator Access</li>
                         <li>• 36-hour Battery Life</li>
                         <li>• Ultra AIFNPU Pro</li>
                         <li>• 8K Per Eye Display</li>
                         <li>• Full Development Suite</li>
                         <li>• Revenue Sharing Access</li>
                     </ul>
-                    <a href="#" class="btn-secondary w-full text-center">Pre-Order</a>
+                    <a href="#" class="btn-secondary w-full text-center" data-i18n="btn_preorder">Pre-Order</a>
                 </div>
             </div>
             
@@ -1645,16 +1678,16 @@
             <div class="glass-effect p-8 rounded-2xl mb-16">
                 <div class="grid lg:grid-cols-2 gap-8 items-center">
                     <div>
-                        <h3 class="text-2xl font-bold mb-4">World404 Theme Park Bundle</h3>
-                        <p class="text-gray-300 mb-6">
-                            Pre-order any 404GLASS model and get 12 months of unlimited access to all 
-                            World404 theme parks globally. Experience the future of entertainment today.
+                        <h3 class="text-2xl font-bold mb-4" data-i18n="bundle_title">WorldAIF Theme Park Bundle</h3>
+                        <p class="text-gray-300 mb-6" data-i18n="bundle_desc">
+                            Pre-order any AIFGlass model and get 12 months of unlimited access to all 
+                            WorldAIF theme parks globally. Experience the future of entertainment today.
                         </p>
                         <div class="flex items-center">
                             <div class="w-10 h-10 bg-green-400 rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-ticket-alt text-black"></i>
                             </div>
-                            <p class="text-gray-300">$299 value included with all pre-orders</p>
+                            <p class="text-gray-300" data-i18n="bundle_val">$299 value included with all pre-orders</p>
                         </div>
                     </div>
                     <div class="text-center">
@@ -1667,17 +1700,17 @@
             
             <!-- Testimonials -->
             <div class="text-center mb-16">
-                <h3 class="text-3xl font-bold mb-8">Visionary Endorsements</h3>
+                <h3 class="text-3xl font-bold mb-8" data-i18n="test_title">Visionary Endorsements</h3>
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="testimonial-card">
                         <div class="flex items-center mb-4">
                             <div class="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
                             <div>
                                 <h4 class="font-bold">Dr. Evelyn Zhang</h4>
-                                <p class="text-sm text-gray-400">AI Researcher, MIT</p>
+                                <p class="text-sm text-gray-400" data-i18n="test1_role">AI Researcher, MIT</p>
                             </div>
                         </div>
-                        <p class="text-gray-300">"404GLASS represents the most significant advancement in human-computer interaction since the smartphone. Its AI-native architecture is revolutionary."</p>
+                        <p class="text-gray-300" data-i18n="test1_quote">"AIFGlass represents the most significant advancement in human-computer interaction since the smartphone. Its AI-native architecture is revolutionary."</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1685,10 +1718,10 @@
                             <div class="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
                             <div>
                                 <h4 class="font-bold">Marcus Johnson</h4>
-                                <p class="text-sm text-gray-400">Tech Investor</p>
+                                <p class="text-sm text-gray-400" data-i18n="test2_role">Tech Investor</p>
                             </div>
                         </div>
-                        <p class="text-gray-300">"The 404GLASS ecosystem creates unprecedented value. This isn't just a product - it's the foundation of the next computing platform."</p>
+                        <p class="text-gray-300" data-i18n="test2_quote">"The AIFGlass ecosystem creates unprecedented value. This isn't just a product - it's the foundation of the next computing platform."</p>
                     </div>
                     
                     <div class="testimonial-card">
@@ -1696,36 +1729,36 @@
                             <div class="w-12 h-12 bg-gray-700 rounded-full mr-4"></div>
                             <div>
                                 <h4 class="font-bold">Sofia Rodriguez</h4>
-                                <p class="text-sm text-gray-400">Film Director</p>
+                                <p class="text-sm text-gray-400" data-i18n="test3_role">Film Director</p>
                             </div>
                         </div>
-                        <p class="text-gray-300">"Creating for 404GLASS has transformed storytelling. The ability to craft personalized narratives that adapt to each viewer is revolutionary."</p>
+                        <p class="text-gray-300" data-i18n="test3_quote">"Creating for AIFGlass has transformed storytelling. The ability to craft personalized narratives that adapt to each viewer is revolutionary."</p>
                     </div>
                 </div>
             </div>
             
             <!-- FAQ -->
             <div class="glass-effect p-8 rounded-2xl">
-                <h3 class="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h3>
+                <h3 class="text-2xl font-bold mb-6 text-center" data-i18n="faq_title">Frequently Asked Questions</h3>
                 <div class="space-y-6">
                     <div>
-                        <h4 class="text-lg font-bold mb-2">When will 404GLASS ship?</h4>
-                        <p class="text-gray-300">First units are scheduled to ship in Q4 2027. Pre-order now to secure your place in the queue.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="faq1_q">When will AIFGlass ship?</h4>
+                        <p class="text-gray-300" data-i18n="faq1_a">First units are scheduled to ship in Q4 2027. Pre-order now to secure your place in the queue.</p>
                     </div>
                     
                     <div>
-                        <h4 class="text-lg font-bold mb-2">Is a prescription version available?</h4>
-                        <p class="text-gray-300">Yes, we offer prescription lenses for all models. You'll be able to provide your prescription details after placing your order.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="faq2_q">Is a prescription version available?</h4>
+                        <p class="text-gray-300" data-i18n="faq2_a">Yes, we offer prescription lenses for all models. You'll be able to provide your prescription details after placing your order.</p>
                     </div>
                     
                     <div>
-                        <h4 class="text-lg font-bold mb-2">What's included in the box?</h4>
-                        <p class="text-gray-300">Each 404GLASS comes with the device, carrying case, wireless charger, cleaning cloth, and quick start guide.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="faq3_q">What's included in the box?</h4>
+                        <p class="text-gray-300" data-i18n="faq3_a">Each AIFGlass comes with the device, carrying case, wireless charger, cleaning cloth, and quick start guide.</p>
                     </div>
                     
                     <div>
-                        <h4 class="text-lg font-bold mb-2">Can I develop apps for 404GLASS?</h4>
-                        <p class="text-gray-300">Yes! Our developer program launches in Q1 2027. Join our waitlist for early access to SDKs and documentation.</p>
+                        <h4 class="text-lg font-bold mb-2" data-i18n="faq4_q">Can I develop apps for AIFGlass?</h4>
+                        <p class="text-gray-300" data-i18n="faq4_a">Yes! Our developer program launches in Q1 2027. Join our waitlist for early access to SDKs and documentation.</p>
                     </div>
                 </div>
             </div>
@@ -1737,8 +1770,8 @@
         <div class="container mx-auto px-4">
             <div class="grid md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <div class="logo-font mb-4">404GLASS</div>
-                    <p class="text-gray-400 mb-4">Redefining reality with AI-native spatial computing.</p>
+                    <div class="logo-font mb-4">AIFGlass</div>
+                    <p class="text-gray-400 mb-4" data-i18n="footer_desc">Redefining reality with AI-native spatial computing.</p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-green-400"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="text-gray-400 hover:text-green-400"><i class="fab fa-instagram"></i></a>
@@ -1748,44 +1781,378 @@
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Products</h4>
+                    <h4 class="text-lg font-bold mb-4" data-i18n="footer_prod">Products</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">404GLASS Explorer</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">404GLASS Pro</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">404GLASS Creator</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">Accessories</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">Software</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400">AIFGlass Explorer</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400">AIFGlass Pro</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400">AIFGlass Creator</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_acc">Accessories</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_soft">Software</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Ecosystem</h4>
+                    <h4 class="text-lg font-bold mb-4" data-i18n="footer_eco">Ecosystem</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">404.world</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">AI Film Market</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">AI Film Academy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">HKAIIFF Festival</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-green-400">World404 Theme Parks</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400">AIF.world</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_market">AI Film Market</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_acad">AI Film Academy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_fest">HKAIIFF Festival</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-green-400" data-i18n="footer_park">WorldAIF Theme Parks</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h4 class="text-lg font-bold mb-4">Subscribe</h4>
-                    <p class="text-gray-400 mb-4">Join our newsletter for product updates and exclusive content.</p>
+                    <h4 class="text-lg font-bold mb-4" data-i18n="footer_sub">Subscribe</h4>
+                    <p class="text-gray-400 mb-4" data-i18n="footer_sub_desc">Join our newsletter for product updates and exclusive content.</p>
                     <div class="flex">
                         <input type="email" placeholder="Your email" class="px-4 py-2 bg-gray-800 rounded-l-lg w-full text-white">
-                        <button class="bg-green-400 text-gray-900 px-4 py-2 rounded-r-lg font-medium">Join</button>
+                        <button class="bg-green-400 text-gray-900 px-4 py-2 rounded-r-lg font-medium" data-i18n="footer_btn_join">Join</button>
                     </div>
                 </div>
             </div>
             
             <div class="pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-                <p>&copy; 2027 404GLASS Technologies. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p>&copy; 2027 AIFGlass Technologies. All rights reserved. | <span data-i18n="footer_privacy">Privacy Policy</span> | <span data-i18n="footer_terms">Terms of Service</span></p>
             </div>
         </div>
     </footer>
 
     <script>
+        // Translations Data
+        const translations = {
+            nav_home: { en: "Home", tc: "首頁" },
+            nav_product: { en: "Product", tc: "產品" },
+            nav_tech: { en: "Technology", tc: "技術" },
+            nav_eco: { en: "Ecosystem", tc: "生態系統" },
+            nav_app: { en: "Applications", tc: "應用" },
+            nav_future: { en: "Future", tc: "未來" },
+            nav_order: { en: "Order", tc: "訂購" },
+            nav_preorder: { en: "Pre-Order Now", tc: "立即預購" },
+            
+            hero_title: { 
+                en: "Your Reality, <br> <span class='gradient-text'>Infinite Possibilities</span>", 
+                tc: "你的現實，<br> <span class='gradient-text'>無限可能</span>" 
+            },
+            hero_desc: {
+                en: "AIFGlass: The world's first AI-native digital reality platform. Experience infinite parallel worlds, personalized content, and seamless reality augmentation through revolutionary spatial computing technology.",
+                tc: "AIFGlass：全球首個 AI 原生數位實境平台。透過革命性的空間計算技術，體驗無限平行世界、個性化內容和無縫實境增強。"
+            },
+            hero_btn_primary: { en: "Pre-Order Starting $899", tc: "預購起價 $899" },
+            hero_btn_secondary: { en: "Book Experience", tc: "預約體驗" },
+            stat_battery_val: { en: "24H", tc: "24小時" },
+            stat_battery_label: { en: "Battery Life", tc: "電池續航" },
+            stat_ppi_val: { en: "3000+", tc: "3000+" },
+            stat_ppi_label: { en: "PPI Display", tc: "PPI 顯示" },
+            stat_worlds_label: { en: "Parallel Worlds", tc: "平行世界" },
+            stat_native_label: { en: "Native", tc: "AI 原生" },
+
+            prod_title: {
+                en: "The <span class='gradient-text'>iPhone</span> of the AI Era",
+                tc: "AI 時代的 <span class='gradient-text'>iPhone</span>"
+            },
+            prod_desc: {
+                en: "AIFGlass isn't just another AR device. It's a foundational platform that defines a new category of AI-native computing, built from the ground up for personalized digital experiences.",
+                tc: "AIFGlass 不僅僅是另一個 AR 設備。它是一個基礎平台，定義了 AI 原生計算的新類別，專為個性化數位體驗而打造。"
+            },
+            design_title: { en: "Revolutionary Design Philosophy", tc: "革命性的設計理念" },
+            feat1_title: { en: "Invisible Computing", tc: "隱形計算" },
+            feat1_desc: { 
+                en: "Elegant, everyday wearable glasses indistinguishable from premium eyewear. Technology that enhances rather than replaces human capabilities.",
+                tc: "優雅的日常佩戴眼鏡，與高級眼鏡無異。增強而非取代人類能力的科技。"
+            },
+            feat2_title: { en: "AI-First Architecture", tc: "AI 優先架構" },
+            feat2_desc: {
+                en: "Purpose-built for AI-powered personalized experiences with custom AIFNPU for real-time content generation.",
+                tc: "專為 AI 驅動的個性化體驗而打造，配備自定義 AIFNPU 用於實時內容生成。"
+            },
+            feat3_title: { en: "Privacy by Design", tc: "隱私設計" },
+            feat3_desc: {
+                en: "All personal data processing occurs on-device. Your data never leaves your control, ensuring complete privacy sovereignty.",
+                tc: "所有個人數據處理均在設備上進行。您的數據永遠不會離開您的控制，確保完全的隱私主權。"
+            },
+            spec_weight: { en: "Ultra-light", tc: "超輕量" },
+            spec_res: { en: "Per Eye", tc: "單眼解析度" },
+            spec_chip: { en: "Neural Chip", tc: "神經晶片" },
+
+            choose_title: { en: "Choose Your Reality", tc: "選擇你的現實" },
+            btn_preorder: { en: "Pre-Order", tc: "預購" },
+            badge_popular: { en: "MOST POPULAR", tc: "最受歡迎" },
+            
+            model1_desc: { en: "Perfect for everyday use. Experience infinite parallel worlds and basic AR enhancement.", tc: "適合日常使用。體驗無限平行世界和基礎 AR 增強。" },
+            model1_features: {
+                en: "<li>• AIF.world Basic Access</li><li>• 12-hour Battery Life</li><li>• Standard AIFNPU</li><li>• 2K Per Eye Display</li>",
+                tc: "<li>• AIF.world 基礎存取權</li><li>• 12 小時電池續航</li><li>• 標準 AIFNPU</li><li>• 2K 單眼顯示</li>"
+            },
+            model2_desc: { en: "Professional grade with advanced AI features and creator tools for content development.", tc: "專業級，具備進階 AI 功能和內容開發創作者工具。" },
+            model2_features: {
+                en: "<li>• AIF.world Premium Access</li><li>• 24-hour Battery Life</li><li>• Advanced AIFNPU 2.0</li><li>• 4K Per Eye Display</li><li>• Creator Studio Tools</li>",
+                tc: "<li>• AIF.world 高級存取權</li><li>• 24 小時電池續航</li><li>• 進階 AIFNPU 2.0</li><li>• 4K 單眼顯示</li><li>• 創作者工作室工具</li>"
+            },
+            model3_desc: { en: "Ultimate creative platform with enterprise features and development capabilities.", tc: "具備企業級功能和開發能力的終極創意平台。" },
+            model3_features: {
+                en: "<li>• AIF.world Creator Access</li><li>• 36-hour Battery Life</li><li>• Ultra AIFNPU Pro</li><li>• 8K Per Eye Display</li><li>• Full Development Suite</li><li>• Revenue Sharing Access</li>",
+                tc: "<li>• AIF.world 創作者存取權</li><li>• 36 小時電池續航</li><li>• Ultra AIFNPU Pro</li><li>• 8K 單眼顯示</li><li>• 完整開發套件</li><li>• 收益共享權限</li>"
+            },
+
+            demo_title: { en: "Experience AIFGlass", tc: "體驗 AIFGlass" },
+            demo_desc: { en: "Select a scenario to see how AIFGlass transforms your reality with AI-powered experiences", tc: "選擇一個場景，看看 AIFGlass 如何透過 AI 體驗改變您的現實" },
+            demo_btn_city: { en: "City Exploration", tc: "城市探索" },
+            demo_btn_edu: { en: "Learning", tc: "學習" },
+            demo_btn_social: { en: "Social Connection", tc: "社交連結" },
+
+            tech_title: { en: "Revolutionary <span class='gradient-text'>Technology</span> Stack", tc: "革命性的 <span class='gradient-text'>技術</span> 堆疊" },
+            tech_desc: { en: "Breakthrough innovations in AI processing, display technology, and spatial computing that make infinite personalized realities possible.", tc: "AI 處理、顯示技術和空間計算方面的突破性創新，使無限的個性化現實成為可能。" },
+            
+            tech1_sub: { en: "AI Film Neural Processing Unit", tc: "AI 電影神經處理單元" },
+            tech1_desc: { en: "Custom silicon designed specifically for real-time personalized content generation. Capable of generating 4K video content in real-time based on user data and preferences.", tc: "專為實時個性化內容生成而設計的定制晶片。能夠根據用戶數據和偏好實時生成 4K 影片內容。" },
+            tech1_list: {
+                en: "<li>• 50 TOPS AI Performance</li><li>• Real-time 4K Video Generation</li><li>• On-device Privacy Processing</li><li>• 70% More Efficient Than Competition</li>",
+                tc: "<li>• 50 TOPS AI 效能</li><li>• 實時 4K 影片生成</li><li>• 設備端隱私處理</li><li>• 比競爭對手高效 70%</li>"
+            },
+
+            tech2_title: { en: "Quantum Dot Micro-OLED", tc: "量子點 Micro-OLED" },
+            tech2_sub: { en: "Revolutionary Display Technology", tc: "革命性顯示技術" },
+            tech2_desc: { en: "Ultra-high pixel density displays with variable opacity for seamless reality blending. Cinema-quality visuals in a lightweight form factor.", tc: "具有可變不透明度的超高像素密度顯示器，可實現無縫實境融合。輕量化設計中的影院級視覺效果。" },
+            tech2_list: {
+                en: "<li>• 3,000+ PPI Ultra-HD</li><li>• Variable Opacity Control</li><li>• 99% DCI-P3 Color Accuracy</li><li>• 120Hz Refresh Rate</li>",
+                tc: "<li>• 3,000+ PPI 超高清</li><li>• 可變不透明度控制</li><li>• 99% DCI-P3 色彩準確度</li><li>• 120Hz 刷新率</li>"
+            },
+
+            tech3_title: { en: "Adaptive Sensory Array", tc: "自適應感測陣列" },
+            tech3_sub: { en: "Contextual Intelligence System", tc: "情境智能系統" },
+            tech3_desc: { en: "Comprehensive sensor suite that understands both user state and environment for perfect contextual adaptation and predictive interaction.", tc: "全面的感測器套件，了解用戶狀態和環境，實現完美的情境適應和預測互動。" },
+            tech3_list: {
+                en: "<li>• Environmental Context Awareness</li><li>• Emotional State Detection</li><li>• Social Situation Recognition</li><li>• Predictive Sensor Activation</li>",
+                tc: "<li>• 環境情境感知</li><li>• 情緒狀態檢測</li><li>• 社交場合識別</li><li>• 預測性感測器啟動</li>"
+            },
+
+            tech4_title: { en: "Spatial Computing Engine", tc: "空間計算引擎" },
+            tech4_sub: { en: "Centimeter-Level Precision", tc: "公分級精度" },
+            tech4_desc: { en: "Advanced SLAM technology with persistent spatial anchors for seamless AR content placement and multi-user synchronization.", tc: "先進的 SLAM 技術，具有持久的空間錨點，可實現無縫的 AR 內容放置和多用戶同步。" },
+            tech4_list: {
+                en: "<li>• Sub-Centimeter Tracking</li><li>• Persistent World Anchors</li><li>• Multi-user Synchronization</li><li>• Inside-out Tracking</li>",
+                tc: "<li>• 亞公分級追蹤</li><li>• 持久世界錨點</li><li>• 多用戶同步</li><li>• 由內而外追蹤</li>"
+            },
+
+            tech5_title: { en: "All-Day Power System", tc: "全天候電源系統" },
+            tech5_sub: { en: "24-Hour Continuous Use", tc: "24 小時連續使用" },
+            tech5_desc: { en: "Revolutionary battery technology with adaptive power management ensures all-day usage without compromise on performance.", tc: "革命性的電池技術與自適應電源管理，確保全天使用而不影響效能。" },
+            tech5_list: {
+                en: "<li>• 24+ Hour Battery Life</li><li>• 15-Minute Quick Charge</li><li>• Adaptive Power Management</li><li>• Wireless Charging Support</li>",
+                tc: "<li>• 24+ 小時電池續航</li><li>• 15 分鐘快速充電</li><li>• 自適應電源管理</li><li>• 無線充電支援</li>"
+            },
+
+            tech6_title: { en: "Privacy-First Architecture", tc: "隱私優先架構" },
+            tech6_sub: { en: "Zero-Trust Security Model", tc: "零信任安全模型" },
+            tech6_desc: { en: "Advanced privacy computing ensures personal data never leaves your device. Complete user control over data sharing and privacy settings.", tc: "先進的隱私計算確保個人數據永遠不會離開您的設備。用戶完全控制數據共享和隱私設置。" },
+            tech6_list: {
+                en: "<li>• On-device AI Processing</li><li>• Encrypted Data Transmission</li><li>• Granular Privacy Controls</li><li>• No Server-side Personal Data</li>",
+                tc: "<li>• 設備端 AI 處理</li><li>• 加密數據傳輸</li><li>• 精細隱私控制</li><li>• 無伺服器端個人數據</li>"
+            },
+
+            hl_title: { en: "Personalized Reality Engine", tc: "個性化實境引擎" },
+            hl_desc: { en: "Our patented AI system creates unique experiences tailored to your personality, memories, and current context. Unlike other AR systems, AIFGlass understands you and adapts in real-time to your emotional state and preferences.", tc: "我們的專利 AI 系統根據您的個性、記憶和當前情境量身定制獨特體驗。與其他 AR 系統不同，AIFGlass 了解您並實時適應您的情緒狀態和偏好。" },
+            hl_tag: { en: "Real-time emotion detection and content adaptation", tc: "實時情緒檢測和內容適應" },
+
+            eco_title: { en: "Complete <span class='gradient-text'>Ecosystem</span> Platform", tc: "完整的 <span class='gradient-text'>生態系統</span> 平台" },
+            eco_desc: { en: "AIFGlass is the hardware foundation of the HKAIIFF ecosystem, creating unprecedented synergies between AI film creation, education, and global experiences.", tc: "AIFGlass 是 HKAIIFF 生態系統的硬體基礎，在 AI 電影創作、教育和全球體驗之間創造了前所未有的協同效應。" },
+            eco_core: { en: "Hardware Core", tc: "硬體核心" },
+            eco1_desc: { en: "Infinite parallel worlds with personalized storytelling and user-generated content universes.", tc: "無限的平行世界，具有個性化的敘事和用戶生成的內容宇宙。" },
+            eco2_title: { en: "AI Film Academy", tc: "AI 電影學院" },
+            eco2_desc: { en: "Immersive learning experiences and virtual classrooms for AI filmmaking education.", tc: "用於 AI 電影製作教育的沉浸式學習體驗和虛擬教室。" },
+            eco3_title: { en: "AI Film Market", tc: "AI 電影市場" },
+            eco3_desc: { en: "Creator tools, content distribution, and tokenized revenue sharing for the AI film economy.", tc: "用於 AI 電影經濟的創作者工具、內容分發和代幣化收益共享。" },
+            eco4_title: { en: "HKAIIFF Festival", tc: "HKAIIFF 電影節" },
+            eco4_desc: { en: "Global participation in film festivals through immersive AR experiences and virtual attendance.", tc: "透過沉浸式 AR 體驗和虛擬出席，全球參與電影節。" },
+
+            flow_title: { en: "Ecosystem Value Flow", tc: "生態系統價值流" },
+            flow1_title: { en: "User", tc: "用戶" },
+            flow1_desc: { en: "Personalized experiences", tc: "個性化體驗" },
+            flow2_title: { en: "Hardware", tc: "硬體" },
+            flow2_desc: { en: "AI processing & rendering", tc: "AI 處理與渲染" },
+            flow3_title: { en: "Platform", tc: "平台" },
+            flow3_desc: { en: "Content delivery & AI", tc: "內容交付與 AI" },
+            flow4_title: { en: "Creator", tc: "創作者" },
+            flow4_desc: { en: "Content development", tc: "內容開發" },
+            flow5_title: { en: "Value Loop", tc: "價值循環" },
+            flow5_desc: { en: "Continuous improvement", tc: "持續改進" },
+
+            benefit_title: { en: "Seamless Integration Benefits", tc: "無縫整合優勢" },
+            ben1_title: { en: "Infinite Content Universe", tc: "無限內容宇宙" },
+            ben1_desc: { en: "Access to the growing universe of AI-native films, user-generated parallel worlds, and exclusive HKAIIFF content.", tc: "存取不斷增長的 AI 原生電影、用戶生成的平行世界和獨家 HKAIIFF 內容宇宙。" },
+            ben2_title: { en: "Creator Economy", tc: "創作者經濟" },
+            ben2_desc: { en: "Participate in the AIF token economy through content creation, viewing rewards, and revenue sharing opportunities.", tc: "透過內容創作、觀看獎勵和收益共享機會參與 AIF 代幣經濟。" },
+            ben3_title: { en: "Global Community", tc: "全球社群" },
+            ben3_desc: { en: "Connect with AI filmmakers, educators, and enthusiasts worldwide through shared virtual experiences.", tc: "透過共享的虛擬體驗與全球 AI 電影製作人、教育工作者和愛好者聯繫。" },
+            
+            flow_title_box: { en: "Ecosystem Value Flow", tc: "生態系統價值流" },
+            val1: { en: "Content Creation", tc: "內容創作" },
+            val2: { en: "Education & Training", tc: "教育與培訓" },
+            val3: { en: "Market Distribution", tc: "市場分發" },
+            val4: { en: "Global Experiences", tc: "全球體驗" },
+            val_footer: { en: "Complete value cycle with fair revenue distribution for all participants", tc: "完整的價值循環，為所有參與者提供公平的收益分配" },
+
+            app_title: { en: "Revolutionary <span class='gradient-text'>Applications</span>", tc: "革命性的 <span class='gradient-text'>應用</span>" },
+            app_desc: { en: "AIFGlass transforms every aspect of digital interaction, from entertainment and education to work and social experiences, creating new possibilities we've never imagined before.", tc: "AIFGlass 改變了數位互動的各個方面，從娛樂和教育到工作和社交體驗，創造了我們前所未有的新可能性。" },
+            
+            case1_title: { en: "Personalized Entertainment", tc: "個性化娛樂" },
+            case1_desc: { en: "Experience infinite parallel worlds where you're not just watching content—you're living it. Every story adapts to your preferences, memories, and emotions in real-time.", tc: "體驗無限平行世界，您不僅是在觀看內容——您正生活在其中。每個故事都會根據您的偏好、記憶和情緒實時調整。" },
+            case1_list: { 
+                en: "<li>• Your photos and memories integrated into storylines</li><li>• Infinite unique endings for every piece of content</li><li>• Social viewing with friends across distances</li><li>• AI-generated content based on your interests</li>",
+                tc: "<li>• 將您的照片和記憶融入故事情節</li><li>• 每個內容都有無限獨特的結局</li><li>• 跨越距離與朋友社交觀看</li><li>• 基於您興趣的 AI 生成內容</li>"
+            },
+
+            case2_title: { en: "Location-Based Experiences", tc: "基於位置的體驗" },
+            case2_desc: { en: "Transform any location into an interactive story space. Historical sites come alive, cities become navigable with AR guidance, and every place tells its unique story.", tc: "將任何地點轉變為互動故事空間。歷史遺跡栩栩如生，城市透過 AR 導航變得易於探索，每個地方都講述著獨特的故事。" },
+            case2_list: {
+                en: "<li>• Historical reconstruction of any location</li><li>• Real-time translation and cultural context</li><li>• Smart city navigation with AR overlays</li><li>• User-generated location-based content</li>",
+                tc: "<li>• 任何地點的歷史重建</li><li>• 實時翻譯和文化背景</li><li>• 帶有 AR 疊加層的智慧城市導航</li><li>• 用戶生成的基於位置的內容</li>"
+            },
+
+            case3_title: { en: "Future of Work", tc: "未來工作" },
+            case3_desc: { en: "Revolutionize remote collaboration with spatial computing. Work with 3D models, attend virtual meetings that feel real, and access information contextually.", tc: "利用空間計算徹底改變遠程協作。使用 3D 模型工作，參加感覺真實的虛擬會議，並情境化地獲取資訊。" },
+            case3_list: {
+                en: "<li>• Holographic video conferencing</li><li>• 3D collaborative workspaces</li><li>• Contextual information overlays</li><li>• AI-powered productivity assistance</li>",
+                tc: "<li>• 全息視訊會議</li><li>• 3D 協作工作空間</li><li>• 情境資訊疊加層</li><li>• AI 驅動的生產力輔助</li>"
+            },
+
+            case4_title: { en: "Immersive Education", tc: "沉浸式教育" },
+            case4_desc: { en: "Learn by experiencing. Walk through ancient Rome, manipulate molecular structures, or attend lectures by Nobel laureates—all through immersive AR experiences.", tc: "從體驗中學習。漫步古羅馬，操作分子結構，或參加諾貝爾獎得主的講座——一切都透過沉浸式 AR 體驗。" },
+            case4_list: {
+                en: "<li>• Virtual field trips to any location or time</li><li>• 3D visualization of complex concepts</li><li>• Personalized AI tutors and learning paths</li><li>• Global classroom collaboration</li>",
+                tc: "<li>• 前往任何地點或時間的虛擬實地考察</li><li>• 複雜概念的 3D 可視化</li><li>• 個性化 AI 導師和學習路徑</li><li>• 全球課堂協作</li>"
+            },
+
+            case5_title: { en: "Social Revolution", tc: "社交革命" },
+            case5_desc: { en: "Connect with friends and family in ways never before possible. Share experiences, create memories together, and maintain relationships across any distance.", tc: "以前所未有的方式與朋友和家人聯繫。分享經歷，共同創造回憶，並跨越任何距離維持關係。" },
+            case5_list: {
+                en: "<li>• Shared virtual experiences with loved ones</li><li>• Holographic presence for remote gatherings</li><li>• Collaborative content creation and storytelling</li><li>• Cross-cultural understanding through shared narratives</li>",
+                tc: "<li>• 與親人分享虛擬體驗</li><li>• 遠程聚會的全息呈現</li><li>• 協作內容創作和敘事</li><li>• 透過共享敘事進行跨文化理解</li>"
+            },
+
+            case6_title: { en: "Health & Wellness", tc: "健康與保健" },
+            case6_desc: { en: "Transform healthcare with AR-assisted medical procedures, therapeutic experiences, and personalized wellness programs that adapt to your lifestyle.", tc: "透過 AR 輔助醫療程序、治療體驗以及適應您生活方式的個性化健康計劃，改變醫療保健。" },
+            case6_list: {
+                en: "<li>• AR-guided medical procedures and training</li><li>• Therapeutic VR experiences for mental health</li><li>• Real-time health monitoring and alerts</li><li>• Personalized fitness and wellness coaching</li>",
+                tc: "<li>• AR 引導的醫療程序和培訓</li><li>• 用於心理健康的治療性 VR 體驗</li><li>• 實時健康監測和警報</li><li>• 個性化健身和健康指導</li>"
+            },
+
+            park_title: { en: "WorldAIF Theme Parks", tc: "WorldAIF 主題樂園" },
+            park_desc: { en: "Step into our physical theme parks where AIFGlass transforms traditional rides into personalized adventures. Each visitor experiences a unique storyline based on their preferences, creating infinite variations of the same attraction.", tc: "步入我們的實體主題樂園，AIFGlass 將傳統遊樂設施轉變為個性化冒險。每位遊客都會根據自己的偏好體驗獨特的故事情節，創造同一景點的無限變化。" },
+            city_tokyo: { en: "Tokyo", tc: "東京" },
+            city_orlando: { en: "Orlando", tc: "奧蘭多" },
+            city_shanghai: { en: "Shanghai", tc: "上海" },
+            city_london: { en: "London", tc: "倫敦" },
+
+            future_title: { en: "The <span class='gradient-text'>Future</span> We're Building", tc: "我們正在構建的 <span class='gradient-text'>未來</span>" },
+            future_desc: { en: "AIFGlass is just the beginning. We're laying the foundation for a post-screen society where digital and physical realities seamlessly merge into personalized, intelligent experiences.", tc: "AIFGlass 僅僅是個開始。我們正在為後螢幕社會奠定基礎，在這個社會中，數位和物理現實無縫融合為個性化、智慧的體驗。" },
+            
+            time1_title: { en: "2027: AI-Native Computing Era", tc: "2027: AI 原生計算時代" },
+            time1_desc: { en: "AIFGlass launches globally, establishing the foundation for AI-native computing. Early adopters experience the first generation of truly personalized digital content.", tc: "AIFGlass 全球發布，奠定 AI 原生計算的基礎。早期採用者體驗第一代真正個性化的數位內容。" },
+            time1_list: { en: "<li>• 500K devices in tech enthusiasts' hands</li><li>• 1,000 developers creating native experiences</li><li>• First AI film festival entirely in AR</li>", tc: "<li>• 50 萬台設備在科技愛好者手中</li><li>• 1,000 名開發者創造原生體驗</li><li>• 首個完全在 AR 中的 AI 電影節</li>" },
+
+            time2_title: { en: "2029: Mainstream Adoption", tc: "2029: 主流採用" },
+            time2_desc: { en: "AIFGlass becomes the preferred platform for entertainment, education, and work. Traditional screens begin their decline as spatial computing takes over.", tc: "AIFGlass 成為娛樂、教育和工作的首選平台。隨著空間計算的接管，傳統螢幕開始衰退。" },
+            time2_list: { en: "<li>• 10M+ global users</li><li>• Major entertainment partnerships</li><li>• AI tutors in 50% of schools</li>", tc: "<li>• 1000 萬+ 全球用戶</li><li>• 主要娛樂合作夥伴</li><li>• 50% 的學校使用 AI 導師</li>" },
+
+            time3_title: { en: "2032: The Metaverse Foundation", tc: "2032: 元宇宙基礎" },
+            time3_desc: { en: "AIFGlass becomes the hardware foundation of the metaverse. Persistent digital worlds overlay our physical reality, creating a new layer of human experience.", tc: "AIFGlass 成為元宇宙的硬體基礎。持久的數位世界疊加在我們的物理現實之上，創造了人類體驗的新層面。" },
+            time3_list: { en: "<li>• 100M+ connected users worldwide</li><li>• Digital twin of every major city</li><li>• 50% of work done in mixed reality</li>", tc: "<li>• 全球 1 億+ 連接用戶</li><li>• 每個主要城市的數位孿生</li><li>• 50% 的工作在混合實境中完成</li>" },
+
+            time4_title: { en: "2035: The Post-Screen Society", tc: "2035: 後螢幕社會" },
+            time4_desc: { en: "Traditional screens become obsolete as spatial computing becomes the primary interface. Human-computer interaction evolves to natural, contextual AI interfaces.", tc: "隨著空間計算成為主要介面，傳統螢幕變得過時。人機互動演變為自然、情境化的 AI 介面。" },
+            time4_list: { en: "<li>• Smartphones replaced by spatial computers</li><li>• Television and monitors become legacy technology</li><li>• Human-AI cognitive collaboration becomes standard</li>", tc: "<li>• 智慧型手機被空間電腦取代</li><li>• 電視和顯示器成為過時技術</li><li>• 人機認知協作成為標準</li>" },
+
+            social_title: { en: "Societal Transformation", tc: "社會轉型" },
+            imp1_title: { en: "Global Connection", tc: "全球連結" },
+            imp1_desc: { en: "Break down geographical barriers with shared experiences across cultures and locations", tc: "透過跨文化和地點的共享體驗打破地理障礙" },
+            imp2_title: { en: "Education Equality", tc: "教育平等" },
+            imp2_desc: { en: "Provide world-class education experiences to anyone, anywhere", tc: "為任何地方的任何人提供世界級的教育體驗" },
+            imp3_title: { en: "Cognitive Enhancement", tc: "認知增強" },
+            imp3_desc: { en: "Augment human intelligence and creativity through AI collaboration", tc: "透過 AI 協作增強人類智慧和創造力" },
+
+            join_title: { en: "Join the <span class='gradient-text'>Reality Revolution</span>", tc: "加入 <span class='gradient-text'>實境革命</span>" },
+            join_desc: { en: "Be among the first to experience the future of computing. Pre-order your AIFGlass today and secure exclusive early adopter benefits.", tc: "成為第一批體驗計算未來的人。立即預購您的 AIFGlass 並獲得獨家早期採用者福利。" },
+            
+            model1_features_short: {
+                en: "<li>• AIF.world Basic Access</li><li>• 12-hour Battery Life</li><li>• Standard AIFNPU</li><li>• 2K Per Eye Display</li><li>• Everyday Design</li>",
+                tc: "<li>• AIF.world 基礎存取權</li><li>• 12 小時電池續航</li><li>• 標準 AIFNPU</li><li>• 2K 單眼顯示</li><li>• 日常設計</li>"
+            },
+            model2_features_short: {
+                en: "<li>• AIF.world Premium Access</li><li>• 24-hour Battery Life</li><li>• Advanced AIFNPU 2.0</li><li>• 4K Per Eye Display</li><li>• Creator Studio Tools</li><li>• Exclusive Content Library</li>",
+                tc: "<li>• AIF.world 高級存取權</li><li>• 24 小時電池續航</li><li>• 進階 AIFNPU 2.0</li><li>• 4K 單眼顯示</li><li>• 創作者工作室工具</li><li>• 獨家內容庫</li>"
+            },
+            model3_features_short: {
+                en: "<li>• AIF.world Creator Access</li><li>• 36-hour Battery Life</li><li>• Ultra AIFNPU Pro</li><li>• 8K Per Eye Display</li><li>• Full Development Suite</li><li>• Revenue Sharing Access</li>",
+                tc: "<li>• AIF.world 創作者存取權</li><li>• 36 小時電池續航</li><li>• Ultra AIFNPU Pro</li><li>• 8K 單眼顯示</li><li>• 完整開發套件</li><li>• 收益共享權限</li>"
+            },
+
+            bundle_title: { en: "WorldAIF Theme Park Bundle", tc: "WorldAIF 主題樂園套裝" },
+            bundle_desc: { en: "Pre-order any AIFGlass model and get 12 months of unlimited access to all WorldAIF theme parks globally. Experience the future of entertainment today.", tc: "預購任何 AIFGlass 型號即可獲得全球所有 WorldAIF 主題樂園的 12 個月無限存取權。立即體驗未來的娛樂。" },
+            bundle_val: { en: "$299 value included with all pre-orders", tc: "所有預購均包含價值 $299 的優惠" },
+
+            test_title: { en: "Visionary Endorsements", tc: "遠見背書" },
+            test1_role: { en: "AI Researcher, MIT", tc: "MIT AI 研究員" },
+            test1_quote: { en: "\"AIFGlass represents the most significant advancement in human-computer interaction since the smartphone. Its AI-native architecture is revolutionary.\"", tc: "「AIFGlass 代表了自智慧型手機以來人機互動最重大的進步。其 AI 原生架構是革命性的。」" },
+            test2_role: { en: "Tech Investor", tc: "科技投資人" },
+            test2_quote: { en: "\"The AIFGlass ecosystem creates unprecedented value. This isn't just a product - it's the foundation of the next computing platform.\"", tc: "「AIFGlass 生態系統創造了前所未有的價值。這不僅僅是一個產品——它是下一個計算平台的基礎。」" },
+            test3_role: { en: "Film Director", tc: "電影導演" },
+            test3_quote: { en: "\"Creating for AIFGlass has transformed storytelling. The ability to craft personalized narratives that adapt to each viewer is revolutionary.\"", tc: "「為 AIFGlass 創作改變了敘事方式。能夠製作適應每位觀眾的個性化敘事是革命性的。」" },
+
+            faq_title: { en: "Frequently Asked Questions", tc: "常見問題" },
+            faq1_q: { en: "When will AIFGlass ship?", tc: "AIFGlass 何時發貨？" },
+            faq1_a: { en: "First units are scheduled to ship in Q4 2027. Pre-order now to secure your place in the queue.", tc: "首批設備預計於 2027 年第四季發貨。立即預購以確保您的排隊位置。" },
+            faq2_q: { en: "Is a prescription version available?", tc: "有提供處方版本嗎？" },
+            faq2_a: { en: "Yes, we offer prescription lenses for all models. You'll be able to provide your prescription details after placing your order.", tc: "是的，我們為所有型號提供處方鏡片。您下單後將能夠提供您的處方詳細資訊。" },
+            faq3_q: { en: "What's included in the box?", tc: "包裝盒內有什麼？" },
+            faq3_a: { en: "Each AIFGlass comes with the device, carrying case, wireless charger, cleaning cloth, and quick start guide.", tc: "每台 AIFGlass 均附帶設備、便攜包、無線充電器、清潔布和快速入門指南。" },
+            faq4_q: { en: "Can I develop apps for AIFGlass?", tc: "我可以為 AIFGlass 開發應用程式嗎？" },
+            faq4_a: { en: "Yes! Our developer program launches in Q1 2027. Join our waitlist for early access to SDKs and documentation.", tc: "可以！我們的開發者計劃將於 2027 年第一季啟動。加入我們的候補名單以儘早獲得 SDK 和文檔。" },
+
+            footer_desc: { en: "Redefining reality with AI-native spatial computing.", tc: "用 AI 原生空間計算重新定義現實。" },
+            footer_prod: { en: "Products", tc: "產品" },
+            footer_acc: { en: "Accessories", tc: "配件" },
+            footer_soft: { en: "Software", tc: "軟體" },
+            footer_eco: { en: "Ecosystem", tc: "生態系統" },
+            footer_market: { en: "AI Film Market", tc: "AI 電影市場" },
+            footer_acad: { en: "AI Film Academy", tc: "AI 電影學院" },
+            footer_fest: { en: "HKAIIFF Festival", tc: "HKAIIFF 電影節" },
+            footer_park: { en: "WorldAIF Theme Parks", tc: "WorldAIF 主題樂園" },
+            footer_sub: { en: "Subscribe", tc: "訂閱" },
+            footer_sub_desc: { en: "Join our newsletter for product updates and exclusive content.", tc: "加入我們的時事通訊以獲取產品更新和獨家內容。" },
+            footer_btn_join: { en: "Join", tc: "加入" },
+            footer_privacy: { en: "Privacy Policy", tc: "隱私政策" },
+            footer_terms: { en: "Terms of Service", tc: "服務條款" }
+        };
+
+        // Current Language State
+        let currentLang = 'en';
+
+        // Language Switch Function
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button text
+            const langLabel = document.getElementById('current-lang');
+            langLabel.textContent = lang === 'en' ? 'EN/繁中' : '繁中/EN';
+
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[key] && translations[key][lang]) {
+                    element.innerHTML = translations[key][lang];
+                }
+            });
+
+            // Re-bind events if necessary (not needed for simple text replacement)
+        }
+
+        // Toggle Language Button Listener
+        document.getElementById('lang-toggle').addEventListener('click', () => {
+            setLanguage(currentLang === 'en' ? 'tc' : 'en');
+        });
+
         // Mobile Menu Toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const mobileMenuClose = document.querySelector('.mobile-menu-close');
@@ -1834,7 +2201,7 @@
         // Generate AI particles
         function createParticles() {
             const container = document.getElementById('particles-container');
-            const particleCount = 100;
+            const particleCount = 100; // Adjusted for better performance on some devices
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
